@@ -7,5 +7,6 @@
 	<classpathentry kind="src" path="core-java-practice/leet-code-codebase"/>
 	<classpathentry kind="src" path="core-java-practice/gcr-codebase/control-flow"/>
 	<classpathentry kind="src" path="core-java-practice/gcr-codebase/arrays"/>
+	<classpathentry kind="src" path="core-java-practice/sneraio-based"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

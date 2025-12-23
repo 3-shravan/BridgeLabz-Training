@@ -47,8 +47,8 @@ public class DigitFrequency {
 
     int[] freq = new int[10];
     for (int i = 0; i < count; i++) {
-      int d = digits[i];
-      freq[d]++;
+      int d = digits[i];           
+      freq[d]++;  
     }
 
     System.out.println("Digit frequencies:");

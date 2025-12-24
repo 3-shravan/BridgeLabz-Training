@@ -1,35 +1,28 @@
-# BridgeLabz-Training
+# Daily Progress Log – BridgeLabz Training
 
-## Daily Progress Log
+This log documents the daily progress of tasks completed during the BridgeLabz training program, as recorded in the repository's commit history. Tasks are grouped by week with thematic headings, detailing the work done on each date and day.
 
 ---
 
-### 📅 December 17, 2025
+## Week 1: Java Fundamentals & Programming Elements
 
-#### Core Java Practice
+**17-Dec-2025 (Tuesday):** Set up workspace. Solved and submitted basic [programming elements](https://github.com/3-shravan/BridgeLabz-Training/tree/core-java-practice/core-java-practice/gcr-codebase/programming-elements) problems. Completed [LeetCode-style problems](https://github.com/3-shravan/BridgeLabz-Training/tree/core-java-practice/core-java-practice/leet-code-codebase).
 
-**Programming Elements (`gcr-codebase/programming-elements/`)**
+**18-Dec-2025 (Wednesday):** Completed Level 1 and Level 2 classroom [programming elements](https://github.com/3-shravan/BridgeLabz-Training/tree/core-java-practice/core-java-practice/gcr-codebase/programming-elements/level%201) questions.
 
-- ✅ Addition operation
-- ✅ Circle area calculation
-- ✅ Average of three numbers
-- ✅ Simple interest calculator
-- ✅ Temperature conversion (Celsius to Fahrenheit)
-- ✅ Distance conversion (Km to Miles)
-- ✅ Rectangle perimeter calculation
-- ✅ Power/exponent calculation
-- ✅ Cylinder volume calculation
-- ✅ Welcome program
+**19-Dec-2025 (Thursday):** Studied control flow documentation.
 
-**LeetCode Problems (`leet-code-codebase/`)**
+---
 
-- ✅ Prime number checker
-- ✅ Fibonacci sequence generator
-- ✅ Hello World
-- ✅ Maximum of three numbers
-- ✅ Palindrome string checker
+## Week 2: Control Flow & Arrays
 
-**Total Programs Completed:** 15
+**20-Dec-2025 (Friday):** Solved and submitted [control flow](https://github.com/3-shravan/BridgeLabz-Training/tree/core-java-practice/core-java-practice/gcr-codebase/control-flow) practice problems. Studied arrays documentation. Solved and submitted Level 1 and Level 2 problems on [arrays](https://github.com/3-shravan/BridgeLabz-Training/tree/core-java-practice/core-java-practice/gcr-codebase/arrays).
+
+**21-Dec-2025 (Sunday):** Developed [scenario-based applications](https://github.com/3-shravan/BridgeLabz-Training/tree/core-java-practice/core-java-practice/sneraio-based).
+
+**22-Dec-2025 (Monday):** Studied strings documentation. Solved level 1 questions.
+
+**23-Dec-2025 (Tuesday):** Solved and submitted every level [string manipulation](https://github.com/3-shravan/BridgeLabz-Training/tree/core-java-practice/core-java-practice/gcr-codebase/strings) problems.
 
 ---
 

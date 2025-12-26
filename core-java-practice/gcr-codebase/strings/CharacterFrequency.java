@@ -14,7 +14,41 @@ import java.util.Scanner;
 public class CharacterFrequency {
   public static void main(String[] args) {
     Scanner sc = new Scanner(System.in);
+    System.out.print("Enter the text: ");
+    String text = sc.nextLine();
+    int[][] frequency = findCharacterFrequency(text);
+    System.out.println("Character Frequency:");
+    for (int i = 0; i < frequency.length; i++) {
+      System.out.println((char) frequency[i][0] + " : " + frequency[i][1]);
+    }
 
     sc.close();
+  }
+
+  private static int[][] findCharacterFrequency(String text) {
+
+    int[] charCount = new int[256];
+
+    for (int i = 0; i < text.length(); i++) {
+      charCount[text.charAt(i)]++;
+    }
+
+    int uniqueChars = 0;
+    for (int count : charCount) {
+      if (count > 0)
+        uniqueChars++;
+    }
+
+    int[][] freq = new int[uniqueChars][2];
+    int index = 0;
+    for (int i = 0; i < charCount.length; i++) {
+      if (charCount[i] > 0) {
+        freq[index][0] = i;
+        freq[index][1] = charCount[i];
+        index++;
+      }
+    }
+    return freq;
+
   }
 }

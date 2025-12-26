@@ -16,8 +16,87 @@ import java.util.Scanner;
 public class CharacterFrequencyUnique {
   public static void main(String[] args) {
     Scanner sc = new Scanner(System.in);
-    
+    String text = sc.nextLine();
+    String[][] freq = findFreq(text);
+    for (String[] pair : freq) {
+      if (pair != null) {
+        System.out.println(pair[0] + "" + pair[1]);
+      }
+    }
 
     sc.close();
+
   }
+
+  private static String[][] findFreq(String text) {
+    int[] freq = new int[256];
+    for (int i = 0; i < text.length(); i++) {
+      freq[text.charAt(i)]++;
+    }
+
+    char[] uniqueChars = uniqueCharacters(text);
+    String[][] result = new String[uniqueChars.length][2];
+    for (int i = 0; i < uniqueChars.length; i++) {
+      result[i][0] = String.valueOf(uniqueChars[i]);
+      result[i][1] = String.valueOf(freq[uniqueChars[i]]);
+    }
+    return result;
+  }
+
+  private static char[] uniqueCharacters(String text) {
+    char[] charArray = text.toCharArray();
+    int[] freq = new int[charArray.length];
+
+    for (int i = 0; i < charArray.length; i++) {
+
+      if (charArray[i] == '0')
+        continue;
+
+      freq[i] = 1;
+
+      for (int j = i + 1; j < charArray.length; j++) {
+        if (charArray[i] == charArray[j]) {
+          freq[i]++;
+          charArray[j] = '0'; // mark as visited
+        }
+      }
+    }
+
+    char[] result = new char[charArray.length];
+    int index = 0;
+    for (char c : charArray) {
+      if (c != '0') {
+        result[index++] = c;
+      }
+    }
+
+    char[] uniqueResult = new char[index];
+    System.arraycopy(result, 0, uniqueResult, 0, index);
+    return uniqueResult;
+  }
+
+  // without nested loops
+  // private static char[] toUniqueCharArray(String str) {
+  // int[] charCount = new int[256];
+
+  // for (int i = 0; i < str.length(); i++) {
+  // charCount[str.charAt(i)]++;
+  // }
+
+  // int uniqueChars = 0;
+  // for (int count : charCount) {
+  // if (count > 0)
+  // uniqueChars++;
+  // }
+  // char[] uniqueCharacters = new char[uniqueChars];
+  // int index = 0;
+  // for (int i = 0; i < charCount.length; i++) {
+  // if (charCount[i] > 0) {
+  // uniqueCharacters[index] = (char) i;
+  // index++;
+  // }
+  // }
+  // return uniqueCharacters;
+  // }
+
 }

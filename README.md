@@ -24,6 +24,8 @@ This log documents the daily progress of tasks completed during the BridgeLabz t
 
 **23-Dec-2025 (Tuesday):** Solved and submitted every level [string manipulation](https://github.com/3-shravan/BridgeLabz-Training/tree/core-java-practice/core-java-practice/gcr-codebase/strings) problems.
 
----
+**24-Dec-2025 (Wednesday):** Studied about the methods and solved some questions.
 
-<!-- Add new entries above this line -->
+**25-Dec-2025 (Thursday):** Solved questions related to [methods](https://github.com/3-shravan/BridgeLabz-Training/tree/core-java-practice/core-java-practice/gcr-codebase/methods).
+
+**26-Dec-2025 (Friday):** Solved extra [string] problems.

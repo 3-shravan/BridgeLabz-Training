@@ -1,7 +1,7 @@
 /*
- * Write a program to calculate various trigonometric functions using Math class given an angle in degrees
- * Method to calculate various trigonometric functions, Firstly convert to radians and then use Math function to find sine, cosine and tangent.
- * public double[] calculateTrigonometricFunctions(double angle)
+ Write a program to calculate various trigonometric functions using Math class given an angle in degrees
+ Method to calculate various trigonometric functions, Firstly convert to radians and then use Math function to find sine, cosine and tangent.
+ public double[] calculateTrigonometricFunctions(double angle)
  */
 
 import java.util.Scanner;

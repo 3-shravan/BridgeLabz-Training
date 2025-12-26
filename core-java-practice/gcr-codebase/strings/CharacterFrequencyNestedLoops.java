@@ -13,7 +13,34 @@ import java.util.Scanner;
 public class CharacterFrequencyNestedLoops {
   public static void main(String[] args) {
     Scanner sc = new Scanner(System.in);
+    String text = sc.nextLine();
+
+    findFreq(text);
 
     sc.close();
+  }
+
+  private static void findFreq(String text) {
+
+    char[] charArray = text.toCharArray();
+    int[] freq = new int[charArray.length];
+    for (int i = 0; i < charArray.length; i++) {
+      freq[i] = 1;
+      for (int j = i + 1; j < charArray.length; j++) {
+        if (charArray[i] == charArray[j]) {
+          freq[i]++;
+          charArray[j] = '0';
+        }
+      }
+    }
+
+    String[] result = new String[charArray.length];
+    for (int i = 0; i < charArray.length; i++) {
+      if (charArray[i] != ' ' && charArray[i] != '0') {
+        result[i] = charArray[i] + "" + freq[i];
+        System.out.println(charArray[i] + "" + freq[i]);
+      }
+    }
+
   }
 }

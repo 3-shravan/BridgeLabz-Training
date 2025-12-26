@@ -28,4 +28,4 @@ This log documents the daily progress of tasks completed during the BridgeLabz t
 
 **25-Dec-2025 (Thursday):** Solved questions related to [methods](https://github.com/3-shravan/BridgeLabz-Training/tree/core-java-practice/core-java-practice/gcr-codebase/methods).
 
-**26-Dec-2025 (Friday):** Solved extra [string] problems.
+**26-Dec-2025 (Friday):** Solved extra [string](https://github.com/3-shravan/BridgeLabz-Training/tree/core-java-practice/core-java-practice/gcr-codebase/strings/extras) problems.

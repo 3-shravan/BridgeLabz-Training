@@ -1,0 +1,6 @@
+*.class
+/bin/
+.vs/
+.github/
+.project
+.vscode/

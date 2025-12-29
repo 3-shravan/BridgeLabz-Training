@@ -5,6 +5,7 @@ public class EmployeeWagerComputation {
   private static final int WAGE_PER_HOUR = 20;
   private static final int FULL_TIME_HOUR = 8;
   private static final int PART_TIME_HOUR = 8;
+   private static final int WORKING_DAYS = 20;
 
   public static void main(String[] args) {
     System.out.println("Welcom to Emplyee Wage Computation");
@@ -22,6 +23,10 @@ public class EmployeeWagerComputation {
     int hours = getHours(employeeType);
     int wage = calculateWage(hours);
     System.out.println("Wage for selected employee type: " + wage);
+
+    int monthlyWages=calculateMonthlyWage();
+    System.out.println("Monthly wages:" + monthlyWages);
+    
 
   }
 
@@ -50,6 +55,14 @@ public class EmployeeWagerComputation {
       default:
         return 0;
     }
+  }
+
+  static int calculateMonthlyWage() {
+    int totalWage = 0;
+    for (int day = 1; day <= WORKING_DAYS; day++) {
+      totalWage += calculateDailyWage();
+    }
+    return totalWage;
   }
 
 }

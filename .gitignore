@@ -2,3 +2,6 @@
 /bin/
 .vs/
 .github/
+.classpath
+.project
+

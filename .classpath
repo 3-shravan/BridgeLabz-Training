@@ -12,5 +12,6 @@
 	<classpathentry kind="src" path="core-java-practice/sneraio-based"/>
 	<classpathentry kind="src" path="core-java-practice/gcr-codebase/methods/extras"/>
 	<classpathentry kind="src" path="core-java-practice/gcr-codebase/strings/extras"/>
+	<classpathentry kind="src" path="reviews"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

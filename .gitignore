@@ -1,7 +1,8 @@
 *.class
 /bin/
-.vs/
 .github/
 .classpath
 .project
+/core_java_practice/
+.vscode/
 

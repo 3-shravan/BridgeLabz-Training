@@ -35,3 +35,5 @@ This log documents the daily progress of tasks completed during the BridgeLabz t
 **28-Dec-2025 (Sunday):** Solved [built in function problems] (https://github.com/3-shravan/BridgeLabz-Training/tree/core-java-practice/core-java-practice/gcr-codebase/methods/extras).
 
 **29-Dec-2025 (Monday):** Solevd the [snerio based problem] (https://github.com/3-shravan/BridgeLabz-Training/tree/core-java-practice/core-java-practice/sneraio-based) in classroom and the [employee wager problem](https://github.com/3-shravan/BridgeLabz-Training/blob/reviews/reviews/EmployeeWagerComputation.java) at time of review.
+
+<!-- **30-Dec-2025 (Tueday):** -->

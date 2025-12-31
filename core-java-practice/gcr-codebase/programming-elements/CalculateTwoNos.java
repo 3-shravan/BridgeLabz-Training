@@ -8,7 +8,7 @@
 
 import java.util.Scanner;
 
-public class CalculateTwoNo {
+public class CalculateTwoNos {
   public static void main(String[] args) {
     Scanner sc = new Scanner(System.in);
     System.out.println("Enter first number:");

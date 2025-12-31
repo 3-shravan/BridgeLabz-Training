@@ -5,7 +5,7 @@
 
 import java.util.Scanner;
 
-public class AreaOfTriangle {
+public class AreaOfTriangle1 {
   public static void main(String[] args) {
     Scanner sc = new Scanner(System.in);
     System.out.print("Enter the base of the triangle in inches: ");

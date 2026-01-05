@@ -1,8 +1,8 @@
-public class BankAccount {
+public class BankAccount1 {
   String accountNumber;
   double balance;
 
-  BankAccount(String accountNumber, double balance) {
+  BankAccount1(String accountNumber, double balance) {
     this.accountNumber = accountNumber;
     this.balance = balance;
   }
@@ -26,7 +26,7 @@ public class BankAccount {
   }
 }
 
-class SavingsAccount extends BankAccount {
+class SavingsAccount extends BankAccount1 {
   double interestRate;
 
   SavingsAccount(String accountNumber, double balance, double interestRate) {
@@ -42,7 +42,7 @@ class SavingsAccount extends BankAccount {
   }
 }
 
-class CheckingAccount extends BankAccount {
+class CheckingAccount extends BankAccount1 {
   double withdrawalLimit;
 
   CheckingAccount(String accountNumber, double balance, double withdrawalLimit) {
@@ -58,7 +58,7 @@ class CheckingAccount extends BankAccount {
   }
 }
 
-class FixedDepositAccount extends BankAccount {
+class FixedDepositAccount extends BankAccount1 {
   int tenure;
 
   FixedDepositAccount(String accountNumber, double balance, int tenure) {

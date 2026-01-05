@@ -1,5 +1,5 @@
 
-public class BankAccount {
+public class BankAccount1 {
 
   private static String bankName = "Global Bank";
   private static int totaAccounts = 0;
@@ -7,7 +7,7 @@ public class BankAccount {
   private final String accountNumber;
   private double balance;
 
-  BankAccount(String accountHolderName, String accountNumber, double balance) {
+  BankAccount1(String accountHolderName, String accountNumber, double balance) {
     this.accountHolderName = accountHolderName;
     this.accountNumber = accountNumber;
     this.balance = balance;
@@ -19,14 +19,14 @@ public class BankAccount {
   }
 
   public void showDetails(Object obj) {
-    if (obj instanceof BankAccount) {
-      BankAccount account = (BankAccount) obj;
+    if (obj instanceof BankAccount1) {
+      BankAccount1 account = (BankAccount1) obj;
       System.out.println("Bank Name: " + bankName);
       System.out.println("Account Holder: " + account.accountHolderName);
       System.out.println("Account Number: " + account.accountNumber);
       System.out.println("Balance: $" + account.balance);
     } else {
-      System.out.println("Invalid object type. Expected a BankAccount instance.");
+      System.out.println("Invalid object type. Expected a BankAccount1 instance.");
     }
   }
 
@@ -55,14 +55,14 @@ public class BankAccount {
 
   public static void main(String[] args) {
 
-    BankAccount account1 = new BankAccount("Alice Smith", "123456789", 1500.00);
-    BankAccount account2 = new BankAccount("Bob Johnson", "987654321", 2500.00);
+    BankAccount1 account1 = new BankAccount1("Alice Smith", "123456789", 1500.00);
+    BankAccount1 account2 = new BankAccount1("Bob Johnson", "987654321", 2500.00);
 
     account1.showDetails(account1);
     System.out.println();
     account2.showDetails(account2);
     System.out.println();
-    System.out.println("Total Bank Accounts: " + BankAccount.getTotalAccounts());
+    System.out.println("Total Bank Accounts: " + BankAccount1.getTotalAccounts());
 
     account1.deposit(500);
     System.out

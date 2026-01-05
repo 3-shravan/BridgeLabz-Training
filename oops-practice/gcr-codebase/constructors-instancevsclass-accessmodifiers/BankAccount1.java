@@ -1,9 +1,9 @@
-public class BankAccount {
+public class BankAccount1 {
   public String accountNumber;
   protected String accountHolder;
   private double balance;
 
-  public BankAccount(String accountNumber, String accountHolder, double initialBalance) {
+  public BankAccount1(String accountNumber, String accountHolder, double initialBalance) {
     this.accountNumber = accountNumber;
     this.accountHolder = accountHolder;
     this.balance = initialBalance;
@@ -19,7 +19,7 @@ public class BankAccount {
 
 }
 
-class SavingsAccount extends BankAccount {
+class SavingsAccount extends BankAccount1 {
   SavingsAccount(String accountNumber, String accountHolder, double initialBalance) {
     super(accountNumber, accountHolder, initialBalance);
   }

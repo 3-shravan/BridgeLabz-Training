@@ -1,15 +1,15 @@
-public class Course {
+class Course {
   private String courseName;
   private int duration;
   private double fee;
 
   private static String instituteName = "ABC Institute";
 
-  public Course() {
+  Course() {
     this("Not Assigned", 0, 0.0);
   }
 
-  public Course(String courseName, int duration, double fee) {
+  Course(String courseName, int duration, double fee) {
     this.courseName = courseName;
     this.duration = duration;
     this.fee = fee;

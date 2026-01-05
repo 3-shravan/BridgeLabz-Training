@@ -1,15 +1,15 @@
-public class Book {
+public class Book1 {
   private String title;
   private String author;
   private double price;
 
-  Book() {
+  Book1() {
     this.title = "Unknown Title";
     this.author = "Unknown Author";
     this.price = 0.0;
   }
 
-  Book(String title, String author, double price) {
+  Book1(String title, String author, double price) {
     this.title = title;
     this.author = author;
     this.price = price;

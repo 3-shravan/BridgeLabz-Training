@@ -13,4 +13,5 @@
 ## Week 4 :
 
 ---
-**5-Jan-2026:** Solved the [Encapsulation, Polymorphism, Interface and Abstract](https://github.com/3-shravan/BridgeLabz-Training/tree/oops-practice/oops-practice/gcr-codebase/encapsulation-polymorphism-abstraction-interface) problems.
+
+**5-Jan-2026:** Solved the [Encapsulation, Polymorphism, Interface and Abstract](https://github.com/3-shravan/BridgeLabz-Training/tree/oops-practice/oops-practice/gcr-codebase/encapsulation-polymorphism-abstraction-interface) and [Scenario-based](https://github.com/3-shravan/BridgeLabz-Training/tree/oops-practice/oops-practice/scenario-based) problems.

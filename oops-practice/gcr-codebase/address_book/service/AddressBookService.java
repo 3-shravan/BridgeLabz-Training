@@ -1,5 +1,7 @@
 package service;
 
+import java.util.List;
+
 import entity.Contact;
 import repository.AddressBookRepository;
 
@@ -28,11 +30,13 @@ public class AddressBookService {
   }
 
   public void showContacts() {
-    Contact contact = addressBookRepository.getContact();
-    if (contact == null) {
+    List<Contact> contacts = addressBookRepository.getContacts();
+    if (contacts == null || contacts.isEmpty()) {
       System.out.println("No contacts found.");
     } else {
-      System.out.println(contact);
+      for (Contact contact : contacts) {
+        System.out.println(contact);
+      }
     }
   }
 

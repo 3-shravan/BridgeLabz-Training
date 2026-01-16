@@ -57,7 +57,7 @@ public class AddressBookController {
 
   private static void showMenu() {
     System.out.println("\n===== ADDRESS BOOK MENU =====");
-    System.out.println("1. Show Contacts");
+    System.out.println("1. View All Contacts");
     System.out.println("2. Add Contact");
     System.out.println("3. Edit Contact by First Name");
     System.out.println("4. Delete Contact by First Name");

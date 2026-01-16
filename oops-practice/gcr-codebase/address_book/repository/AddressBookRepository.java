@@ -1,34 +1,42 @@
 package repository;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import entity.Contact;
 
 public class AddressBookRepository {
 
-  private Contact contact;
+  private final List<Contact> contacts = new ArrayList<>();
 
   public void save(Contact contact) {
-    this.contact = contact;
+    contacts.add(contact);
   }
 
-  public Contact getContact() {
-    return contact;
+  public List<Contact> getContacts() {
+    return contacts;
   }
 
   public Contact findByFirstName(String firstName) {
-    if (contact != null && contact.getFirstName().equalsIgnoreCase(firstName)) {
-      return contact;
+    for (Contact contact : contacts) {
+      if (contact != null && contact.getFirstName().equalsIgnoreCase(firstName)) {
+        return contact;
+      }
     }
     return null;
   }
 
   public void update(Contact contact) {
-    this.contact = contact;
+    for (int i = 0; i < contacts.size(); i++) {
+      if (contacts.get(i).getFirstName().equalsIgnoreCase(contact.getFirstName())) {
+        contacts.set(i, contact);
+        return;
+      }
+    }
   }
 
   public void delete(Contact contact) {
-    if (this.contact != null && this.contact.getFirstName().equalsIgnoreCase(contact.getFirstName())) {
-      this.contact = null;
-    }
+    contacts.removeIf(c -> c.getFirstName().equalsIgnoreCase(contact.getFirstName()));
   }
 
 }

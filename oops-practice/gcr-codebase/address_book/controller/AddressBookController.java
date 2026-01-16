@@ -3,11 +3,13 @@ package controller;
 import java.util.Scanner;
 
 import entity.Contact;
+import service.AddressBookService;
 
 public class AddressBookController {
 
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
+    AddressBookService addressBookService = new AddressBookService();
 
     System.out.println("Enter First Name:");
     String firstName = scanner.nextLine();
@@ -33,8 +35,10 @@ public class AddressBookController {
     System.out.println("Enter Email:");
     String email = scanner.nextLine();
 
+    scanner.close();
+
     Contact contact = new Contact(firstName, lastName, address, city, state, zip, phoneNumber, email);
-    System.out.println("Contact Created: " + contact);
+    addressBookService.addContact(contact);
   }
 
 }

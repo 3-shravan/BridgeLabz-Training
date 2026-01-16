@@ -10,6 +10,10 @@ public class AddressBookRepository {
     this.contact = contact;
   }
 
+  public Contact getContact() {
+    return contact;
+  }
+
   public Contact findByFirstName(String firstName) {
     if (contact != null && contact.getFirstName().equalsIgnoreCase(firstName)) {
       return contact;
@@ -20,4 +24,11 @@ public class AddressBookRepository {
   public void update(Contact contact) {
     this.contact = contact;
   }
+
+  public void delete(Contact contact) {
+    if (this.contact != null && this.contact.getFirstName().equalsIgnoreCase(contact.getFirstName())) {
+      this.contact = null;
+    }
+  }
+
 }

@@ -21,10 +21,16 @@ public class AddressBookController {
 
         switch (choice) {
         case 1:
-          addContactFlow();
+          showContactsFlow();
           break;
         case 2:
+          addContactFlow();
+          break;
+        case 3:
           editContactFlow();
+          break;
+        case 4:
+          deleteContactFlow();
           break;
         case 0:
           running = false;
@@ -35,6 +41,8 @@ public class AddressBookController {
         }
       } catch (NumberFormatException e) {
         System.out.println("Please enter a valid number.");
+      } catch (IllegalArgumentException e) {
+        System.out.println("Error: " + e.getMessage());
       } catch (Exception e) {
         System.out.println("Unexpected error: " + e.getMessage());
       }
@@ -43,10 +51,16 @@ public class AddressBookController {
     scanner.close();
   }
 
+  private static void showContactsFlow() {
+    service.showContacts();
+  }
+
   private static void showMenu() {
     System.out.println("\n===== ADDRESS BOOK MENU =====");
-    System.out.println("1. Add Contact");
-    System.out.println("2. Edit Contact by First Name");
+    System.out.println("1. Show Contacts");
+    System.out.println("2. Add Contact");
+    System.out.println("3. Edit Contact by First Name");
+    System.out.println("4. Delete Contact by First Name");
     System.out.println("0. Exit");
     System.out.print("Enter your choice: ");
   }
@@ -67,6 +81,17 @@ public class AddressBookController {
 
       Contact updatedContact = readContactDetails();
       service.editContactByFirstName(firstName, updatedContact);
+    } catch (IllegalArgumentException e) {
+      System.out.println("Error: " + e.getMessage());
+    }
+  }
+
+  private static void deleteContactFlow() {
+    try {
+      System.out.print("Enter first name of contact to delete: ");
+      String firstName = scanner.nextLine();
+
+      service.deleteContactByFirstName(firstName);
     } catch (IllegalArgumentException e) {
       System.out.println("Error: " + e.getMessage());
     }

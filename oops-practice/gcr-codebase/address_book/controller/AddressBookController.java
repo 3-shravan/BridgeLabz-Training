@@ -32,6 +32,15 @@ public class AddressBookController {
         case 4:
           deleteContactFlow();
           break;
+        case 5:
+          createAddressBookFlow();
+          break;
+        case 6:
+          showAllAddressBooksFlow();
+          break;
+        case 7:
+          switchAddressBookFlow();
+          break;
         case 0:
           running = false;
           System.out.println("Exiting Address Book...!");
@@ -61,6 +70,9 @@ public class AddressBookController {
     System.out.println("2. Add Contact");
     System.out.println("3. Edit Contact by First Name");
     System.out.println("4. Delete Contact by First Name");
+    System.out.println("5. Create new Address Book");
+    System.out.println("6. Show all Address Books");
+    System.out.println("7. Switch Address Book ");
     System.out.println("0. Exit");
     System.out.print("Enter your choice: ");
   }
@@ -92,6 +104,30 @@ public class AddressBookController {
       String firstName = scanner.nextLine();
 
       service.deleteContactByFirstName(firstName);
+    } catch (IllegalArgumentException e) {
+      System.out.println("Error: " + e.getMessage());
+    }
+  }
+
+  private static void createAddressBookFlow() {
+    try {
+      System.out.print("Enter name for new Address Book: ");
+      String name = scanner.nextLine();
+      service.createAddressBook(name);
+    } catch (IllegalArgumentException e) {
+      System.out.println("Error: " + e.getMessage());
+    }
+  }
+
+  private static void showAllAddressBooksFlow() {
+    service.showAllAddressBooks();
+  }
+
+  private static void switchAddressBookFlow() {
+    try {
+      System.out.print("Enter name of Address Book to switch to: ");
+      String name = scanner.nextLine();
+      service.switchAddressBook(name);
     } catch (IllegalArgumentException e) {
       System.out.println("Error: " + e.getMessage());
     }

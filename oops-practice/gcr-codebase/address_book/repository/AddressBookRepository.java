@@ -1,24 +1,22 @@
 package repository;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import entity.AddressBook;
 import entity.Contact;
 
 public class AddressBookRepository {
 
-  private final List<Contact> contacts = new ArrayList<>();
-
-  public void save(Contact contact) {
-    contacts.add(contact);
+  public void save(AddressBook addressBook, Contact contact) {
+    addressBook.getContacts().add(contact);
   }
 
-  public List<Contact> getContacts() {
-    return contacts;
+  public List<Contact> getContacts(AddressBook addressBook) {
+    return addressBook.getContacts();
   }
 
-  public Contact findByFirstName(String firstName) {
-    for (Contact contact : contacts) {
+  public Contact findByFirstName(AddressBook addressBook, String firstName) {
+    for (Contact contact : addressBook.getContacts()) {
       if (contact != null && contact.getFirstName().equalsIgnoreCase(firstName)) {
         return contact;
       }
@@ -26,17 +24,17 @@ public class AddressBookRepository {
     return null;
   }
 
-  public void update(Contact contact) {
-    for (int i = 0; i < contacts.size(); i++) {
-      if (contacts.get(i).getFirstName().equalsIgnoreCase(contact.getFirstName())) {
-        contacts.set(i, contact);
+  public void update(AddressBook addressBook, Contact contact) {
+    for (int i = 0; i < addressBook.getContacts().size(); i++) {
+      if (addressBook.getContacts().get(i).getFirstName().equalsIgnoreCase(contact.getFirstName())) {
+        addressBook.getContacts().set(i, contact);
         return;
       }
     }
   }
 
-  public void delete(Contact contact) {
-    contacts.removeIf(c -> c.getFirstName().equalsIgnoreCase(contact.getFirstName()));
+  public void delete(AddressBook addressBook, Contact contact) {
+    addressBook.getContacts().removeIf(c -> c.getFirstName().equalsIgnoreCase(contact.getFirstName()));
   }
 
 }

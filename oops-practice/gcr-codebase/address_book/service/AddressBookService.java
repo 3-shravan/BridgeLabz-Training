@@ -70,6 +70,10 @@ public class AddressBookService {
 
   public void addContact(Contact contact) {
     validateContact(contact);
+    boolean isExists = addressBookRepository.isContactExists(currentAddressBook, contact);
+    if (isExists) {
+      throw new IllegalArgumentException("Contact with first name " + contact.getFirstName() + " already exists.");
+    }
     addressBookRepository.save(currentAddressBook, contact);
     System.out.println("Contact added Successfully");
   }

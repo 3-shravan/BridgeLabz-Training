@@ -11,6 +11,15 @@ public class AddressBookRepository {
     addressBook.getContacts().add(contact);
   }
 
+  public boolean isContactExists(AddressBook addressBook, Contact contact) {
+    for (Contact existingContact : addressBook.getContacts()) {
+      if (existingContact.getFirstName().equalsIgnoreCase(contact.getFirstName())) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   public List<Contact> getContacts(AddressBook addressBook) {
     return addressBook.getContacts();
   }

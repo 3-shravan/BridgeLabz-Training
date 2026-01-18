@@ -1,4 +1,5 @@
-public class ReverseStringSB {
+public class ReverseStringSb {
+
   public static String reverse(String input) {
     StringBuilder sb = new StringBuilder();
     sb.append(input);

@@ -33,7 +33,7 @@ public class UtilInput {
 			System.out.println("Invalid input. Please enter a valid long integer.");
 			return readLong(prompt);
 		}
-
+	}
 	double readDouble(String prompt) {
 		System.out.print(prompt);
 		String input = read.nextLine();

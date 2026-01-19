@@ -54,12 +54,34 @@ public class AddressBookService {
     }
   }
 
-  public List<Contact> getContactByStateOrCity(String keyword) {
+  public List<Contact> findContactByStateOrCity(String keyword) {
 
     validateField(keyword);
     List<Contact> results = new ArrayList<>();
     for (AddressBook ab : systemRepository.getAllAddressBooks().values()) {
       List<Contact> contacts = addressBookRepository.findByStateOrCity(ab, keyword);
+      if (contacts != null)
+        results.addAll(contacts);
+    }
+    return results;
+  }
+
+  public List<Contact> getContactsByState(String state) {
+    validateField(state);
+    List<Contact> results = new ArrayList<>();
+    for (AddressBook ab : systemRepository.getAllAddressBooks().values()) {
+      List<Contact> contacts = addressBookRepository.getContactsByState(ab, state);
+      if (contacts != null)
+        results.addAll(contacts);
+    }
+    return results;
+  }
+
+  public List<Contact> getContactsByCity(String city) {
+    validateField(city);
+    List<Contact> results = new ArrayList<>();
+    for (AddressBook ab : systemRepository.getAllAddressBooks().values()) {
+      List<Contact> contacts = addressBookRepository.getContactsByCity(ab, city);
       if (contacts != null)
         results.addAll(contacts);
     }

@@ -45,6 +45,9 @@ public class AddressBookController {
         case 8:
           handleSearchByStateOrCity();
           break;
+        case 9:
+          handleViewByStateOrCity();
+          break;
         case 0:
           running = false;
           System.out.println("Exiting Address Book...!");
@@ -64,11 +67,56 @@ public class AddressBookController {
     scanner.close();
   }
 
+  private static void handleViewByStateOrCity() {
+    try {
+      System.out.println("View Contacts by: ");
+      System.out.println("1. State");
+      System.out.println("2. City");
+      System.out.print("Enter your choice: ");
+      int choice = Integer.parseInt(scanner.nextLine());
+      switch (choice) {
+      case 0:
+        return;
+      case 1:
+        System.out.print("Enter state to view contacts: ");
+        String state = scanner.nextLine();
+        List<Contact> stateResults = service.getContactsByState(state);
+        if (stateResults.isEmpty()) {
+          System.out.println("No contacts found for the given state.");
+        } else {
+          System.out.println("Contacts found:");
+          for (Contact contact : stateResults) {
+            System.out.println(contact);
+          }
+        }
+        break;
+      case 2:
+        System.out.print("Enter city to view contacts: ");
+        String city = scanner.nextLine();
+        List<Contact> cityResults = service.getContactsByCity(city);
+        if (cityResults.isEmpty()) {
+          System.out.println("No contacts found for the given city.");
+        } else {
+          System.out.println("Contacts found:");
+          for (Contact contact : cityResults) {
+            System.out.println(contact);
+          }
+        }
+        break;
+      default:
+        System.out.println("Invalid choice. Please select 1 or 2.");
+      }
+
+    } catch (IllegalArgumentException e) {
+      System.out.println("Error: " + e.getMessage());
+    }
+  }
+
   private static void handleSearchByStateOrCity() {
     try {
       System.out.print("Enter state or city to search contacts: ");
       String keyword = scanner.nextLine();
-      List<Contact> results = service.getContactByStateOrCity(keyword);
+      List<Contact> results = service.findContactByStateOrCity(keyword);
       if (results.isEmpty()) {
         System.out.println("No contacts found for the given state or city.");
       } else {
@@ -97,6 +145,7 @@ public class AddressBookController {
     System.out.println("6. Show all Address Books");
     System.out.println("7. Switch Address Book ");
     System.out.println("8. Search Contacts by State or City");
+    System.out.println("9. View Contacts by State or City");
     System.out.println("0. Exit");
     System.out.print("Enter your choice: ");
   }

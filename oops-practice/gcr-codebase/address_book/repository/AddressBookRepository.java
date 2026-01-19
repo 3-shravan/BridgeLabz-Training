@@ -57,4 +57,25 @@ public class AddressBookRepository {
     return results;
   }
 
+  public List<Contact> getContactsByState(AddressBook addressBook, String state) {
+
+    List<Contact> results = new ArrayList<>();
+    for (Contact contact : addressBook.getContacts()) {
+      if (contact.getState().equalsIgnoreCase(state)) {
+        results.add(contact);
+      }
+    }
+    return results;
+  }
+
+  public List<Contact> getContactsByCity(AddressBook addressBook, String city) {
+    List<Contact> results = new ArrayList<>();
+    for (Contact contact : addressBook.getContacts()) {
+      if (contact.getCity().equalsIgnoreCase(city)) {
+        results.add(contact);
+      }
+    }
+    return results;
+  }
+
 }

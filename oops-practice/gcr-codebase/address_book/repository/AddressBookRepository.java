@@ -1,5 +1,6 @@
 package repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import entity.AddressBook;
@@ -44,6 +45,16 @@ public class AddressBookRepository {
 
   public void delete(AddressBook addressBook, Contact contact) {
     addressBook.getContacts().removeIf(c -> c.getFirstName().equalsIgnoreCase(contact.getFirstName()));
+  }
+
+  public List<Contact> findByStateOrCity(AddressBook addressBook, String keyword) {
+    List<Contact> results = new ArrayList<>();
+    for (Contact contact : addressBook.getContacts()) {
+      if (contact.getCity().contains(keyword) || contact.getState().contains(keyword)) {
+        results.add(contact);
+      }
+    }
+    return results;
   }
 
 }

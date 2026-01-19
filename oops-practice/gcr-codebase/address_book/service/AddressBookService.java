@@ -1,5 +1,6 @@
 package service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -51,6 +52,18 @@ public class AddressBookService {
         System.out.println("- " + name);
       }
     }
+  }
+
+  public List<Contact> getContactByStateOrCity(String keyword) {
+
+    validateField(keyword);
+    List<Contact> results = new ArrayList<>();
+    for (AddressBook ab : systemRepository.getAllAddressBooks().values()) {
+      List<Contact> contacts = addressBookRepository.findByStateOrCity(ab, keyword);
+      if (contacts != null)
+        results.addAll(contacts);
+    }
+    return results;
   }
 
   /*

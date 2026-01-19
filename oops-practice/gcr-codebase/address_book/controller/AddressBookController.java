@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.List;
 import java.util.Scanner;
 
 import entity.Contact;
@@ -41,6 +42,9 @@ public class AddressBookController {
         case 7:
           switchAddressBookFlow();
           break;
+        case 8:
+          handleSearchByStateOrCity();
+          break;
         case 0:
           running = false;
           System.out.println("Exiting Address Book...!");
@@ -60,6 +64,25 @@ public class AddressBookController {
     scanner.close();
   }
 
+  private static void handleSearchByStateOrCity() {
+    try {
+      System.out.print("Enter state or city to search contacts: ");
+      String keyword = scanner.nextLine();
+      List<Contact> results = service.getContactByStateOrCity(keyword);
+      if (results.isEmpty()) {
+        System.out.println("No contacts found for the given state or city.");
+      } else {
+        System.out.println("Contacts found:");
+        for (Contact contact : results) {
+          System.out.println(contact);
+        }
+      }
+    } catch (IllegalArgumentException e) {
+      System.out.println("Error: " + e.getMessage());
+    }
+
+  }
+
   private static void showContactsFlow() {
     service.showContacts();
   }
@@ -73,6 +96,7 @@ public class AddressBookController {
     System.out.println("5. Create new Address Book");
     System.out.println("6. Show all Address Books");
     System.out.println("7. Switch Address Book ");
+    System.out.println("8. Search Contacts by State or City");
     System.out.println("0. Exit");
     System.out.print("Enter your choice: ");
   }

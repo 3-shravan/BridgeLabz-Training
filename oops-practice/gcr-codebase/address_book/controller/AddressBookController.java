@@ -48,6 +48,9 @@ public class AddressBookController {
         case 9:
           handleViewByStateOrCity();
           break;
+        case 10:
+          handleContactCountByStateOrCity();
+          break;
         case 0:
           running = false;
           System.out.println("Exiting Address Book...!");
@@ -65,6 +68,38 @@ public class AddressBookController {
     }
 
     scanner.close();
+  }
+
+  private static void handleContactCountByStateOrCity() {
+    try {
+      System.out.println("Get Total Contacts by: ");
+      System.out.println("1. State");
+      System.out.println("2. City");
+      System.out.print("Enter your choice: ");
+      int choice = Integer.parseInt(scanner.nextLine());
+      switch (choice) {
+      case 0:
+        return;
+      case 1:
+        System.out.print("Enter state to get total contacts: ");
+        String state = scanner.nextLine();
+        int stateCount = service.totalContactsCountByState(state);
+        System.out.println("Total contacts in state '" + state + "': " + stateCount);
+        break;
+      case 2:
+        System.out.print("Enter city to get total contacts: ");
+        String city = scanner.nextLine();
+        int cityCount = service.totalContactsCountByCity(city);
+        System.out.println("Total contacts in city '" + city + "': " + cityCount);
+        break;
+      default:
+        System.out.println("Invalid choice. Please select 1 or 2.");
+      }
+
+    } catch (IllegalArgumentException e) {
+      System.out.println("Error: " + e.getMessage());
+    }
+
   }
 
   private static void handleViewByStateOrCity() {
@@ -146,6 +181,7 @@ public class AddressBookController {
     System.out.println("7. Switch Address Book ");
     System.out.println("8. Search Contacts by State or City");
     System.out.println("9. View Contacts by State or City");
+    System.out.println("10. Get Total Contacts by State or City");
     System.out.println("0. Exit");
     System.out.print("Enter your choice: ");
   }

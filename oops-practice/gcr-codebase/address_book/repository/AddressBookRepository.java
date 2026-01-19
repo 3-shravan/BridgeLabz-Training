@@ -78,4 +78,24 @@ public class AddressBookRepository {
     return results;
   }
 
+  public int totalContactsCountByCity(AddressBook addressBook, String city) {
+    int count = 0;
+    for (Contact contact : addressBook.getContacts()) {
+      if (contact.getCity().equalsIgnoreCase(city)) {
+        count++;
+      }
+    }
+    return count;
+  }
+
+  public int totalContactsCountByState(AddressBook addressBook, String state) {
+    int count = 0;
+    for (Contact contact : addressBook.getContacts()) {
+      if (contact.getState().equalsIgnoreCase(state)) {
+        count++;
+      }
+    }
+    return count;
+  }
+
 }

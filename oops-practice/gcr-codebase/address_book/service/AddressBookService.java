@@ -88,6 +88,26 @@ public class AddressBookService {
     return results;
   }
 
+  public int totalContactsCountByCity(String city) {
+    validateField(city);
+    int count = 0;
+    for (AddressBook ab : systemRepository.getAllAddressBooks().values()) {
+      count = addressBookRepository.totalContactsCountByCity(ab, city);
+
+    }
+    return count;
+  }
+
+  public int totalContactsCountByState(String state) {
+    validateField(state);
+    int count = 0;
+    for (AddressBook ab : systemRepository.getAllAddressBooks().values()) {
+      count = addressBookRepository.totalContactsCountByState(ab, state);
+
+    }
+    return count;
+  }
+
   /*
    * @Repository methods called from service layer
    */

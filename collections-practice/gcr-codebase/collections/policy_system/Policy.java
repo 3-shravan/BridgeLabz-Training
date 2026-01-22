@@ -32,6 +32,10 @@ public class Policy {
     return coverageType;
   }
 
+  public String getPolicyHolderName() {
+    return policyHolderName;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o)

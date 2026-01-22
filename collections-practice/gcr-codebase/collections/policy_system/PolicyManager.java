@@ -2,9 +2,12 @@ package policy_system;
 
 import java.time.LocalDate;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -13,12 +16,23 @@ public class PolicyManager {
   private Set<Policy> hashSet = new HashSet<>();
   private Set<Policy> linkedHashSet = new LinkedHashSet<>();
   private Set<Policy> treeSet = new TreeSet<>(Comparator.comparing(Policy::getExpiryDate));
+  private Map<Integer, Policy> policyMap = new HashMap<>();
 
   // Add policy to all sets
   public void addPolicy(Policy policy) {
     hashSet.add(policy);
     linkedHashSet.add(policy);
     treeSet.add(policy);
+    policyMap.put(policy.getPolicyNumber(), policy);
+  }
+
+  public Policy getPolicyByNumber(int policyNumber) {
+    return policyMap.get(policyNumber);
+  }
+
+  public void policiesByHolder(String holderName) {
+    policyMap.values().stream().filter(p -> p.getPolicyHolderName().equalsIgnoreCase(holderName))
+        .forEach(System.out::println);
   }
 
   // Retrieve all unique policies
@@ -43,6 +57,21 @@ public class PolicyManager {
   public void findDuplicatePolicies(List<Policy> policies) {
     Set<Integer> seen = new HashSet<>();
     policies.stream().filter(p -> !seen.add(p.getPolicyNumber())).forEach(System.out::println);
+  }
+
+  // Remove Expire Polcies
+  public void removeExpiredPolicies() {
+    LocalDate today = LocalDate.now();
+    Iterator<Policy> iterator = hashSet.iterator();
+    while (iterator.hasNext()) {
+      Policy policy = iterator.next();
+      if (policy.getExpiryDate().isBefore(today)) {
+        iterator.remove();
+        linkedHashSet.remove(policy);
+        treeSet.remove(policy);
+        policyMap.remove(policy.getPolicyNumber());
+      }
+    }
   }
 
   // Performance comparison

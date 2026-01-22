@@ -34,5 +34,11 @@ public class Main {
 
                 System.out.println("\n🔹 Performance Comparison");
                 manager.performanceTest(new Policy(200, "Test", LocalDate.now().plusDays(90), "Auto", 4000));
+
+                System.out.println(manager.getPolicyByNumber(101));
+                manager.policiesByHolder("Alice");
+
+                manager.removeExpiredPolicies();
+
         }
 }

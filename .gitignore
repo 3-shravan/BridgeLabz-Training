@@ -6,3 +6,8 @@
 .vscode/
 .classpath
 core_java_practice/
+.idea/
+BridgeLabz-Training.iml
+target/
+.mvn/
+

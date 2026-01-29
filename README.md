@@ -252,6 +252,10 @@ Branches used during the training:
 
 - Work: Collections case studies: Banking System, Shopping Cart
 
+---
+
+## Week 8
+
 **26-Jan-2026 (Monday):** Added `Streams` practice problems and utilities.
 
 - Branch : -[collections-practice](https://github.com/3-shravan/BridgeLabz-Training/tree/collections-practice)

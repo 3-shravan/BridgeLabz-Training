@@ -228,4 +228,53 @@ Branches used during the training:
   - [Address Book System](https://github.com/3-shravan/BridgeLabz-Training/tree/oops-practice/oops-practice/gcr-codebase/address_book)
   - [Runtime Analysis Problems](https://github.com/3-shravan/BridgeLabz-Training/tree/dsa-practice/dsa-practice/gcr-codebase/runtime-analysis)
 
+**20-Jan-2026 (Tuesday):** Added `Generics` problems and examples.
+
+- Branch : -[collections-practice](https://github.com/3-shravan/BridgeLabz-Training/tree/collections-practice)
+
+- Work: `Generics` problems
+
+**21-Jan-2026 (Wednesday):** Added Collection exercises: `List`, `Set`, and a Case Study (Policy System).
+
+- Branch : -[collections-practice](https://github.com/3-shravan/BridgeLabz-Training/tree/collections-practice)
+
+- Work: Collections — List and Set problems, Case Study: Policy System
+
+**22-Jan-2026 (Thursday):** Continued Collections work — `Map`, `Queue`, with scenario-based problems and refactors.
+
+- Branch : -[collections-practice](https://github.com/3-shravan/BridgeLabz-Training/tree/collections-practice)
+
+- Work: Collections — Map & Queue problems, Voting System, refactored policy-system code
+
+**23-Jan-2026 (Friday):** Added Collection-based projects — `Banking System` and `Shopping Cart` implementations.
+
+- Branch : -[collections-practice](https://github.com/3-shravan/BridgeLabz-Training/tree/collections-practice)
+
+- Work: Collections case studies: Banking System, Shopping Cart
+
+**26-Jan-2026 (Monday):** Added `Streams` practice problems and utilities.
+
+- Branch : -[collections-practice](https://github.com/3-shravan/BridgeLabz-Training/tree/collections-practice)
+
+- Work: `Streams` practice.
+
+**27-Jan-2026 (Tuesday):** Added Exception handling problems, more `Streams` exercises and a Scenario-Based problem (Lexical Twist).
+
+- Branch : -[collections-practice](https://github.com/3-shravan/BridgeLabz-Training/tree/collections-practice)
+
+- Work: `Exception`, `Streams` exercises, Scenario: `Lexical Twist`
+
+**28-Jan-2026 (Wednesday):** Maven project setup for junit testing and solved senario based problems.
+
+- Branch : -[collections-practice](https://github.com/3-shravan/BridgeLabz-Training/tree/collections-practice)
+
+- Work :
+  - [`junit`](https://github.com/3-shravan/BridgeLabz-Training/tree/collections-practice/collections-practice/gcr-codebase/junit) and [`Scenario-Based Problems`](https://github.com/3-shravan/BridgeLabz-Training/tree/collections-practice/collections-practice/scenario-based)
+
+**29-Jan-2026 (Thursday):** Solved Scenario based problem Future Logistics.
+
+- Branch : -[oops-practice](https://github.com/3-shravan/BridgeLabz-Training/tree/oops-practice)
+- Work :
+  - [`Future Logistics`](https://github.com/3-shravan/BridgeLabz-Training/tree/oops-practice/oops-practice/scenario-based/future_logistics)
+
 ---

@@ -10,6 +10,8 @@ public class CalculatorTest {
     @Test
     void testAdd() {
         assertEquals(10, calculator.add(5, 5));
+        assertEquals(0, calculator.add(-5, 5));
+        assertEquals(-10, calculator.add(-5, -5));
     }
 
     @Test
@@ -27,13 +29,9 @@ public class CalculatorTest {
         assertEquals(4, calculator.divide(8, 2));
     }
 
-    // 👉 Bonus: Division by zero
     @Test
     void testDivideByZero() {
-        Exception exception = assertThrows(
-                IllegalArgumentException.class,
-                () -> calculator.divide(10, 0)
-        );
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> calculator.divide(10, 0));
 
         assertEquals("Division by zero is not allowed", exception.getMessage());
     }

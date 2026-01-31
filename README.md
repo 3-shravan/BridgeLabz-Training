@@ -281,4 +281,21 @@ Branches used during the training:
 - Work :
   - [`Future Logistics`](https://github.com/3-shravan/BridgeLabz-Training/tree/oops-practice/oops-practice/scenario-based/future_logistics)
 
+**30-Jan-2026 (Friday):** Solved Regex and j-unit testing Probelems.
+
+- Branch : -[collections-practice](https://github.com/3-shravan/BridgeLabz-Training/tree/collections-practice)
+- Work :
+  - [`junit`](https://github.com/3-shravan/BridgeLabz-Training/tree/collections-practice/collections-practice/gcr-codebase/junit)
+  - [`regex`](https://github.com/3-shravan/BridgeLabz-Training/tree/collections-practice/collections-practice/gcr-codebase/regex)
+
+**31-Jan-2026 (Saturday):** Solved Advanced advanced j-unit testing problems and Scenario Based Flip key problem.
+
+- Branch :
+  - [collections-practice](https://github.com/3-shravan/BridgeLabz-Training/tree/collections-practice)
+  - [core-java-practice](https://github.com/3-shravan/BridgeLabz-Training/tree/core-java-practice)
+
+- Work :
+  - [`junit`](https://github.com/3-shravan/BridgeLabz-Training/tree/collections-practice/collections-practice/gcr-codebase/junit)
+  - [`Flip Key`](https://github.com/3-shravan/BridgeLabz-Training/blob/core-java-practice/core-java-practice/sneraio-based/FlipKey.java)
+
 ---

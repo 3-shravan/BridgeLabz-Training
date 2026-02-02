@@ -299,3 +299,16 @@ Branches used during the training:
   - [`Flip Key`](https://github.com/3-shravan/BridgeLabz-Training/blob/core-java-practice/core-java-practice/sneraio-based/FlipKey.java)
 
 ---
+
+## Week 9
+
+**2-Feb-2026 (Monday):** Practiced Annotations, Reflection tasks and CSV file handling exercises.
+- Branch :
+  - [collections-practice](https://github.com/3-shravan/BridgeLabz-Training/tree/collections-practice)
+  - [io-programming](https://github.com/3-shravan/BridgeLabz-Training/tree/io-programming)
+
+- Work:
+  - [Annotations](https://github.com/3-shravan/BridgeLabz-Training/tree/collections-practice/collections-practice/gcr-codebase/annotations)
+  - [Reflection](https://github.com/3-shravan/BridgeLabz-Training/tree/collections-practice/collections-practice/gcr-codebase/reflections)
+  - [CSV file handling](https://github.com/3-shravan/BridgeLabz-Training/tree/io-programming/io-programming/gcr-codebase/csv-file-handling)
+

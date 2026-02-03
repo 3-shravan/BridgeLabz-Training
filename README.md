@@ -303,6 +303,7 @@ Branches used during the training:
 ## Week 9
 
 **2-Feb-2026 (Monday):** Practiced Annotations, Reflection tasks and CSV file handling exercises.
+
 - Branch :
   - [collections-practice](https://github.com/3-shravan/BridgeLabz-Training/tree/collections-practice)
   - [io-programming](https://github.com/3-shravan/BridgeLabz-Training/tree/io-programming)
@@ -312,3 +313,9 @@ Branches used during the training:
   - [Reflection](https://github.com/3-shravan/BridgeLabz-Training/tree/collections-practice/collections-practice/gcr-codebase/reflections)
   - [CSV file handling](https://github.com/3-shravan/BridgeLabz-Training/tree/io-programming/io-programming/gcr-codebase/csv-file-handling)
 
+**3-Feb-2026 (Tuesday):** Solved JSON file handling and Scenario based problems.
+
+- Work:
+  - [Json file handling](https://github.com/3-shravan/BridgeLabz-Training/tree/io-programming/io-programming/gcr-codebase/json)
+  - [Stream Buzz Problem](https://github.com/3-shravan/BridgeLabz-Training/blob/collections-practice/collections-practice/scenario-based/StreamBuzz.java)
+  - [Factory Hazard Problem](https://github.com/3-shravan/BridgeLabz-Training/blob/dsa-practice/dsa-practice/scenario-based/FactoryRobotHazardAnalyzer.java)

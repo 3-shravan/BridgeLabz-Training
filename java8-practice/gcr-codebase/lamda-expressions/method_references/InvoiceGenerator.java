@@ -1,6 +1,8 @@
 package method_references;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 class Invoice {
     private String transactionId;
@@ -19,12 +21,11 @@ public class InvoiceGenerator {
 
     public static void main(String[] args) {
 
-        List<String> transactionIds = List.of(
+        List<String> transactionIds = Arrays.asList(
                 "TXN1001",
                 "TXN1002",
                 "TXN1003");
-        List<Invoice> invoices = transactionIds.stream().map(Invoice::new).toList();
+        List<Invoice> invoices = transactionIds.stream().map(Invoice::new).collect(Colctors.toList());
         invoices.forEach(System.out::println);
-
     }
 }

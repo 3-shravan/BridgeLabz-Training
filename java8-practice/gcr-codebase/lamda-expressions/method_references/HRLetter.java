@@ -1,4 +1,4 @@
-package method_refrences;
+package method_references;
 
 import java.util.List;
 

@@ -1,5 +1,6 @@
-package method_refrences;
+package method_references;
 
+import java.util.Arrays;
 import java.util.List;
 
 class Patient {
@@ -24,7 +25,7 @@ public class HospitalAdmin {
 
   public static void main(String[] args) {
 
-    List<Patient> patients = List.of(
+    List<Patient> patients = Arrays.asList(
         new Patient(101),
         new Patient(102),
         new Patient(103));

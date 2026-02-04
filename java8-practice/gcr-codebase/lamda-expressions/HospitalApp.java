@@ -32,7 +32,7 @@ public class HospitalApp {
 
   public static void main(String[] args) {
 
-    List<Alert> alerts = List.of(
+    List<Alert> alerts = Arrays.asList(
         new Alert("Heart rate critical", "EMERGENCY"),
         new Alert("Take medicine at 8 AM", "MEDICINE"),
         new Alert("Doctor appointment tomorrow", "APPOINTMENT"),

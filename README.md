@@ -334,4 +334,4 @@ Branches used during the training:
   - [java8-practice](https://github.com/3-shravan/BridgeLabz-Training/tree/java8-practice)
 - Work :
   - [Functional interfaces](https://github.com/3-shravan/BridgeLabz-Training/tree/java8-practice/java8-practice/gcr-codebase/functional-interfaces)
-
+  - [Stream API](https://github.com/3-shravan/BridgeLabz-Training/tree/java8-practice/java8-practice/gcr-codebase/stream-api)

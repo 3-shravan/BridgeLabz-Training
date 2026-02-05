@@ -25,7 +25,7 @@ public class InvoiceGenerator {
                 "TXN1001",
                 "TXN1002",
                 "TXN1003");
-        List<Invoice> invoices = transactionIds.stream().map(Invoice::new).collect(Colctors.toList());
+        List<Invoice> invoices = transactionIds.stream().map(Invoice::new).collect(Collectors.toList());
         invoices.forEach(System.out::println);
     }
 }

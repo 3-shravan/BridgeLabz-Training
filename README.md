@@ -319,3 +319,19 @@ Branches used during the training:
   - [Json file handling](https://github.com/3-shravan/BridgeLabz-Training/tree/io-programming/io-programming/gcr-codebase/json)
   - [Stream Buzz Problem](https://github.com/3-shravan/BridgeLabz-Training/blob/collections-practice/collections-practice/scenario-based/StreamBuzz.java)
   - [Factory Hazard Problem](https://github.com/3-shravan/BridgeLabz-Training/blob/dsa-practice/dsa-practice/scenario-based/FactoryRobotHazardAnalyzer.java)
+
+**4-Feb-2026 (Wednesday):** Practiced Lamda Expressions and looked into Functional interfaces .
+
+- Branch :
+  - [java8-practice](https://github.com/3-shravan/BridgeLabz-Training/tree/java8-practice)
+- Work :
+  - [Lamda Expressions](https://github.com/3-shravan/BridgeLabz-Training/tree/java8-practice/java8-practice/gcr-codebase/lamda-expressions)
+  - [Functional interfaces](https://github.com/3-shravan/BridgeLabz-Training/tree/java8-practice/java8-practice/gcr-codebase/functional-interfaces)
+
+**5-Feb-2026 (Thursday):** Practiced Functional interfaces and Stream API .
+
+- Branch :
+  - [java8-practice](https://github.com/3-shravan/BridgeLabz-Training/tree/java8-practice)
+- Work :
+  - [Functional interfaces](https://github.com/3-shravan/BridgeLabz-Training/tree/java8-practice/java8-practice/gcr-codebase/functional-interfaces)
+

@@ -2,6 +2,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 
 class Doctor {
+
   private String name;
   private String specialization;
   private boolean isAvailableOnWeekend;
@@ -10,7 +11,6 @@ class Doctor {
     this.name = name;
     this.specialization = specialization;
     this.isAvailableOnWeekend = isAvailableOnWeekend;
-
   }
 
   public String getName() {
@@ -35,12 +35,16 @@ public class DoctorAvailability {
 
   public static void main(String[] args) {
     Arrays.asList(
-        new Doctor("Dr. Smith", "Cardiology", true),
-        new Doctor("Dr. Johnson", "Neurology", false),
-        new Doctor("Dr. Williams", "Pediatrics", true),
-        new Doctor("Dr. Brown", "Orthopedics", false),
-        new Doctor("Dr. Jones", "Dermatology", true)).stream().filter(dr -> dr.isAvailableOnWeekend())
-        .sorted(Comparator.comparing(Doctor::getSpecialization)).toList().forEach(System.out::println);
-
+      new Doctor("Dr. Smith", "Cardiology", true),
+      new Doctor("Dr. Johnson", "Neurology", false),
+      new Doctor("Dr. Williams", "Pediatrics", true),
+      new Doctor("Dr. Brown", "Orthopedics", false),
+      new Doctor("Dr. Jones", "Dermatology", true)
+    )
+      .stream()
+      .filter(dr -> dr.isAvailableOnWeekend())
+      .sorted(Comparator.comparing(Doctor::getSpecialization))
+      .toList()
+      .forEach(System.out::println);
   }
 }

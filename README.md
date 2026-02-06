@@ -335,3 +335,10 @@ Branches used during the training:
 - Work :
   - [Functional interfaces](https://github.com/3-shravan/BridgeLabz-Training/tree/java8-practice/java8-practice/gcr-codebase/functional-interfaces)
   - [Stream API](https://github.com/3-shravan/BridgeLabz-Training/tree/java8-practice/java8-practice/gcr-codebase/stream-api)
+
+**6-Feb-2026 (Friday):** Practiced Collectors problems..
+
+- Branch :
+  - [java8-practice](https://github.com/3-shravan/BridgeLabz-Training/tree/java8-practice)
+- Work :
+  - [Collectors](https://github.com/3-shravan/BridgeLabz-Training/tree/java8-practice/java8-practice/gcr-codebase/collectors)

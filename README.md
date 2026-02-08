@@ -343,3 +343,11 @@ Branches used during the training:
 - Work :
   - [Collectors](https://github.com/3-shravan/BridgeLabz-Training/tree/java8-practice/java8-practice/gcr-codebase/collectors)
   - [AeroVigil](https://github.com/3-shravan/BridgeLabz-Training/blob/dsa-practice/dsa-practice/scenario-based/AeroVigil.java)
+
+**7-Feb-2026 (Saturday):** Scenario based problem OCEAN FLEET and go through the concepts of design patterns.
+
+- Branch :
+  - [collections-practice](https://github.com/3-shravan/BridgeLabz-Training/tree/collections-practice)
+
+- Work :
+  - [Ocean Fleet](https://github.com/3-shravan/BridgeLabz-Training/blob/collections-practice/collections-practice/scenario-based/OceanFleet.java)

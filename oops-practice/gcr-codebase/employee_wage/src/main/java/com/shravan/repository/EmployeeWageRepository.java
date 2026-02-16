@@ -22,6 +22,14 @@ public class EmployeeWageRepository {
     return 20;
   }
 
+  public int getMaxWorkingHoursPerMonth() {
+    return 100;
+  }
+
+  public int getAttendanceType() {
+    return random.nextInt(3);
+  }
+
   public boolean isEmployeePresent() {
     return random.nextBoolean();
   }

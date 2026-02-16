@@ -31,4 +31,8 @@ public class EmployeeWageController {
   public EmployeeWage calculateMonthlyWage() {
     return service.calculateMonthlyWage();
   }
+
+  public EmployeeWage calculateWageTillConditionForMonth() {
+    return service.calculateWageTillConditionForMonth();
+  }
 }

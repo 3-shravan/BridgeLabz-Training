@@ -50,5 +50,8 @@ public class App {
 
         EmployeeWage monthlyWage = controller.calculateMonthlyWage();
         System.out.println("UC5 Result: Monthly Employee Wage = " + monthlyWage.getAmount());
+
+        EmployeeWage uc6Wage = controller.calculateWageTillConditionForMonth();
+        System.out.println("UC6 Result: Wage till max hours/days condition = " + uc6Wage.getAmount());
     }
 }

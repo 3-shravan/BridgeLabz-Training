@@ -79,4 +79,17 @@ public class AppTest {
         assertNotNull(wage);
         assertEquals(3200, wage.getAmount());
     }
+
+    @Test
+    public void shouldCalculateWageTillConditionForUc6() {
+        EmployeeWageController controller = new EmployeeWageController(
+                new EmployeeWageService(new EmployeeWageRepository()));
+
+        EmployeeWage wage = controller.calculateWageTillConditionForMonth();
+
+        assertNotNull(wage);
+        assertTrue(wage.getAmount() >= 0);
+        assertTrue(wage.getAmount() <= 2000);
+        assertTrue(wage.getAmount() % 20 == 0);
+    }
 }

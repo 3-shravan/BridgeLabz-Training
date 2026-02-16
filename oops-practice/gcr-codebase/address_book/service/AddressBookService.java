@@ -3,6 +3,7 @@ package service;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -16,6 +17,9 @@ import java.util.stream.Stream;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 import com.opencsv.exceptions.CsvValidationException;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 
 import entity.AddressBook;
 import entity.Contact;
@@ -27,6 +31,7 @@ public class AddressBookService {
   private final AddressBookSystemRepository systemRepository = new AddressBookSystemRepository();
   private final AddressBookRepository addressBookRepository = new AddressBookRepository();
   private AddressBook currentAddressBook;
+  private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
   public AddressBookService() {
     this.currentAddressBook = systemRepository.getDefaultAddressBook();
@@ -334,6 +339,54 @@ public class AddressBookService {
       System.out.println("Address Book CSV loaded successfully using OpenCSV. Total contacts: " + loadedContacts.size());
     } catch (IOException | CsvValidationException e) {
       throw new IllegalStateException("Failed to read CSV file using OpenCSV: " + e.getMessage());
+    }
+  }
+
+  public void writeCurrentAddressBookToJsonUsingGson(String filePath) {
+    validateField(filePath);
+    Path path = Paths.get(filePath);
+
+    try {
+      Path parent = path.getParent();
+      if (parent != null) {
+        Files.createDirectories(parent);
+      }
+
+      try (BufferedWriter writer = Files.newBufferedWriter(path, StandardCharsets.UTF_8)) {
+        GSON.toJson(currentAddressBook.getContacts(), writer);
+      }
+
+      System.out.println("Address Book JSON written successfully using Gson: " + filePath);
+    } catch (IOException e) {
+      throw new IllegalStateException("Failed to write JSON file using Gson: " + e.getMessage());
+    }
+  }
+
+  public void readContactsFromJsonUsingGson(String filePath) {
+    validateField(filePath);
+    Path path = Paths.get(filePath);
+
+    if (!Files.exists(path)) {
+      throw new IllegalArgumentException("File not found: " + filePath);
+    }
+
+    try (BufferedReader reader = Files.newBufferedReader(path, StandardCharsets.UTF_8)) {
+      Type contactListType = new TypeToken<List<Contact>>() {
+      }.getType();
+
+      List<Contact> loadedContacts = GSON.fromJson(reader, contactListType);
+      if (loadedContacts == null) {
+        loadedContacts = new ArrayList<>();
+      }
+
+      currentAddressBook.getContacts().clear();
+      currentAddressBook.getContacts().addAll(loadedContacts);
+
+      System.out.println("Address Book JSON loaded successfully using Gson. Total contacts: " + loadedContacts.size());
+    } catch (IOException e) {
+      throw new IllegalStateException("Failed to read JSON file using Gson: " + e.getMessage());
+    } catch (Exception e) {
+      throw new IllegalStateException("Invalid JSON format: " + e.getMessage());
     }
   }
 

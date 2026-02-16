@@ -63,6 +63,9 @@ public class AddressBookController {
           case 14:
             csvReadWriteUsingOpenCsvFlow();
             break;
+          case 15:
+            jsonReadWriteUsingGsonFlow();
+            break;
           case 0:
             running = false;
             System.out.println("Exiting Address Book...!");
@@ -198,6 +201,7 @@ public class AddressBookController {
     System.out.println("12. Sort Contacts by City/State/Zip");
     System.out.println("13. Read/Write Address Book To File");
     System.out.println("14. Read/Write Address Book as CSV (OpenCSV)");
+    System.out.println("15. Read/Write Address Book as JSON (Gson)");
     System.out.println("0. Exit");
     System.out.print("Enter your choice: ");
   }
@@ -280,6 +284,36 @@ public class AddressBookController {
           break;
         case 2:
           service.readContactsFromCsvUsingOpenCsv(filePath);
+          break;
+        default:
+          System.out.println("Invalid choice. Please select 1 or 2.");
+      }
+    } catch (NumberFormatException e) {
+      System.out.println("Please enter a valid number.");
+    } catch (IllegalArgumentException e) {
+      System.out.println("Error: " + e.getMessage());
+    } catch (IllegalStateException e) {
+      System.out.println("Error: " + e.getMessage());
+    }
+  }
+
+  private static void jsonReadWriteUsingGsonFlow() {
+    try {
+      System.out.println("Gson JSON Operations:");
+      System.out.println("1. Write Address Book as JSON");
+      System.out.println("2. Read Address Book from JSON");
+      System.out.print("Enter your choice: ");
+      int choice = Integer.parseInt(scanner.nextLine());
+
+      System.out.print("Enter JSON file path: ");
+      String filePath = scanner.nextLine();
+
+      switch (choice) {
+        case 1:
+          service.writeCurrentAddressBookToJsonUsingGson(filePath);
+          break;
+        case 2:
+          service.readContactsFromJsonUsingGson(filePath);
           break;
         default:
           System.out.println("Invalid choice. Please select 1 or 2.");

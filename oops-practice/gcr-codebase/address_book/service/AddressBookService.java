@@ -1,5 +1,7 @@
 package service;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -10,6 +12,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import com.opencsv.CSVReader;
+import com.opencsv.CSVWriter;
+import com.opencsv.exceptions.CsvValidationException;
 
 import entity.AddressBook;
 import entity.Contact;
@@ -246,6 +252,88 @@ public class AddressBookService {
       System.out.println("Address Book loaded successfully from file. Total contacts: " + loadedContacts.size());
     } catch (IOException e) {
       throw new IllegalStateException("Failed to read Address Book from file: " + e.getMessage());
+    }
+  }
+
+  public void writeCurrentAddressBookToCsvUsingOpenCsv(String filePath) {
+    validateField(filePath);
+    Path path = Paths.get(filePath);
+
+    try {
+      Path parent = path.getParent();
+      if (parent != null) {
+        Files.createDirectories(parent);
+      }
+
+      try (BufferedWriter bufferedWriter = Files.newBufferedWriter(path, StandardCharsets.UTF_8);
+          CSVWriter csvWriter = new CSVWriter(bufferedWriter)) {
+
+        csvWriter.writeNext(new String[] { "firstName", "lastName", "address", "city", "state", "zip", "phoneNumber",
+            "email" });
+
+        currentAddressBook.getContacts().forEach(contact -> csvWriter.writeNext(new String[] {
+            contact.getFirstName(),
+            contact.getLastName(),
+            contact.getAddress(),
+            contact.getCity(),
+            contact.getState(),
+            contact.getZip(),
+            contact.getPhoneNumber(),
+            contact.getEmail() }));
+      }
+
+      System.out.println("Address Book CSV written successfully using OpenCSV: " + filePath);
+    } catch (IOException e) {
+      throw new IllegalStateException("Failed to write CSV file using OpenCSV: " + e.getMessage());
+    }
+  }
+
+  public void readContactsFromCsvUsingOpenCsv(String filePath) {
+    validateField(filePath);
+    Path path = Paths.get(filePath);
+
+    if (!Files.exists(path)) {
+      throw new IllegalArgumentException("File not found: " + filePath);
+    }
+
+    try (BufferedReader bufferedReader = Files.newBufferedReader(path, StandardCharsets.UTF_8);
+        CSVReader csvReader = new CSVReader(bufferedReader)) {
+
+      List<Contact> loadedContacts = new ArrayList<>();
+      String[] row;
+      boolean isHeader = true;
+
+      while ((row = csvReader.readNext()) != null) {
+        if (row.length == 0 || (row.length == 1 && row[0].isBlank())) {
+          continue;
+        }
+
+        if (isHeader && row.length == 8 && "firstName".equalsIgnoreCase(row[0])) {
+          isHeader = false;
+          continue;
+        }
+        isHeader = false;
+
+        if (row.length != 8) {
+          throw new IllegalArgumentException("Invalid CSV format. Each row must contain exactly 8 columns.");
+        }
+
+        loadedContacts.add(new Contact(
+            row[0],
+            row[1],
+            row[2],
+            row[3],
+            row[4],
+            row[5],
+            row[6],
+            row[7]));
+      }
+
+      currentAddressBook.getContacts().clear();
+      currentAddressBook.getContacts().addAll(loadedContacts);
+      System.out.println("Address Book CSV loaded successfully using OpenCSV. Total contacts: " + loadedContacts.size());
+    } catch (IOException | CsvValidationException e) {
+      throw new IllegalStateException("Failed to read CSV file using OpenCSV: " + e.getMessage());
     }
   }
 

@@ -60,6 +60,9 @@ public class AddressBookController {
           case 13:
             fileReadWriteFlow();
             break;
+          case 14:
+            csvReadWriteUsingOpenCsvFlow();
+            break;
           case 0:
             running = false;
             System.out.println("Exiting Address Book...!");
@@ -194,6 +197,7 @@ public class AddressBookController {
     System.out.println("11. Sort Contacts by Person Name (A-Z)");
     System.out.println("12. Sort Contacts by City/State/Zip");
     System.out.println("13. Read/Write Address Book To File");
+    System.out.println("14. Read/Write Address Book as CSV (OpenCSV)");
     System.out.println("0. Exit");
     System.out.print("Enter your choice: ");
   }
@@ -246,6 +250,36 @@ public class AddressBookController {
           break;
         case 2:
           service.readContactsFromFile(filePath);
+          break;
+        default:
+          System.out.println("Invalid choice. Please select 1 or 2.");
+      }
+    } catch (NumberFormatException e) {
+      System.out.println("Please enter a valid number.");
+    } catch (IllegalArgumentException e) {
+      System.out.println("Error: " + e.getMessage());
+    } catch (IllegalStateException e) {
+      System.out.println("Error: " + e.getMessage());
+    }
+  }
+
+  private static void csvReadWriteUsingOpenCsvFlow() {
+    try {
+      System.out.println("OpenCSV Operations:");
+      System.out.println("1. Write Address Book as CSV");
+      System.out.println("2. Read Address Book from CSV");
+      System.out.print("Enter your choice: ");
+      int choice = Integer.parseInt(scanner.nextLine());
+
+      System.out.print("Enter CSV file path: ");
+      String filePath = scanner.nextLine();
+
+      switch (choice) {
+        case 1:
+          service.writeCurrentAddressBookToCsvUsingOpenCsv(filePath);
+          break;
+        case 2:
+          service.readContactsFromCsvUsingOpenCsv(filePath);
           break;
         default:
           System.out.println("Invalid choice. Please select 1 or 2.");

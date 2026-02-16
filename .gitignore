@@ -1,6 +1,7 @@
 *.class
 /bin/
 /target/
+**/target/
 .vs/
 .github/
 .project

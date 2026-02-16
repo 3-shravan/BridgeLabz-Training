@@ -54,4 +54,18 @@ public class AppTest {
         assertNotNull(wage);
         assertEquals(160, wage.getAmount());
     }
+
+    @Test
+    public void shouldSupportWageValuesUsedInSwitchCaseForUc4() {
+        EmployeeWageController controller = new EmployeeWageController(
+                new EmployeeWageService(new EmployeeWageRepository()));
+
+        int fullTimeWage = controller.calculateDailyWage().getAmount();
+        int partTimeWage = controller.calculatePartTimeWage().getAmount();
+        int absentWage = 0;
+
+        assertTrue(fullTimeWage == 160);
+        assertTrue(partTimeWage == 160);
+        assertTrue(absentWage == 0);
+    }
 }

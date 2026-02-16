@@ -1,95 +1,40 @@
 package com.shravan;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import com.shravan.controller.EmployeeWageController;
-import com.shravan.entity.EmployeeAttendance;
-import com.shravan.entity.EmployeeWage;
 import com.shravan.repository.EmployeeWageRepository;
 import com.shravan.service.EmployeeWageService;
 import org.junit.Test;
 
 public class AppTest {
 
-    @Test
-    public void shouldReturnWelcomeMessage() {
-        EmployeeWageController controller = new EmployeeWageController(
-                new EmployeeWageService(new EmployeeWageRepository()));
-
-        assertEquals("Welcome to Employee Wage Computation Program", controller.getWelcomeMessage());
+    private EmployeeWageController createController() {
+        return new EmployeeWageController(new EmployeeWageService(new EmployeeWageRepository()));
     }
 
     @Test
-    public void shouldCheckAttendanceForUc1() {
-        EmployeeWageController controller = new EmployeeWageController(
-                new EmployeeWageService(new EmployeeWageRepository()));
+    public void shouldComputeWageDetails() {
+        EmployeeWageController controller = createController();
 
-        EmployeeAttendance attendance = controller.checkEmployeeAttendance();
+        String welcomeText = controller.getWelcomeText();
+        String attendanceStatus = controller.getAttendanceStatus();
+        int fullTimeDailyWage = controller.getFullTimeDailyWage();
+        int partTimeDailyWage = controller.getPartTimeDailyWage();
+        int attendanceBasedDailyWage = controller.getAttendanceBasedDailyWage();
+        int estimatedMonthlyWage = controller.getEstimatedMonthlyWage();
+        int monthlyWageWithLimits = controller.getMonthlyWageWithLimits();
+        int staticConfigurationWage = controller.getStaticConfigurationWage();
 
-        assertNotNull(attendance);
-        assertTrue(attendance.getStatus().equals("Employee is Present")
-                || attendance.getStatus().equals("Employee is Absent"));
-    }
-
-    @Test
-    public void shouldCalculateDailyWageForUc2() {
-        EmployeeWageController controller = new EmployeeWageController(
-                new EmployeeWageService(new EmployeeWageRepository()));
-
-        EmployeeWage wage = controller.calculateDailyWage();
-
-        assertNotNull(wage);
-        assertEquals(160, wage.getAmount());
-    }
-
-    @Test
-    public void shouldCalculatePartTimeWageForUc3() {
-        EmployeeWageController controller = new EmployeeWageController(
-                new EmployeeWageService(new EmployeeWageRepository()));
-
-        EmployeeWage wage = controller.calculatePartTimeWage();
-
-        assertNotNull(wage);
-        assertEquals(160, wage.getAmount());
-    }
-
-    @Test
-    public void shouldSupportWageValuesUsedInSwitchCaseForUc4() {
-        EmployeeWageController controller = new EmployeeWageController(
-                new EmployeeWageService(new EmployeeWageRepository()));
-
-        int fullTimeWage = controller.calculateDailyWage().getAmount();
-        int partTimeWage = controller.calculatePartTimeWage().getAmount();
-        int absentWage = 0;
-
-        assertTrue(fullTimeWage == 160);
-        assertTrue(partTimeWage == 160);
-        assertTrue(absentWage == 0);
-    }
-
-    @Test
-    public void shouldCalculateMonthlyWageForUc5() {
-        EmployeeWageController controller = new EmployeeWageController(
-                new EmployeeWageService(new EmployeeWageRepository()));
-
-        EmployeeWage wage = controller.calculateMonthlyWage();
-
-        assertNotNull(wage);
-        assertEquals(3200, wage.getAmount());
-    }
-
-    @Test
-    public void shouldCalculateWageTillConditionForUc6() {
-        EmployeeWageController controller = new EmployeeWageController(
-                new EmployeeWageService(new EmployeeWageRepository()));
-
-        EmployeeWage wage = controller.calculateWageTillConditionForMonth();
-
-        assertNotNull(wage);
-        assertTrue(wage.getAmount() >= 0);
-        assertTrue(wage.getAmount() <= 2000);
-        assertTrue(wage.getAmount() % 20 == 0);
+        assertEquals("Welcome to Employee Wage Computation Program", welcomeText);
+        assertTrue(attendanceStatus.equals("Employee is Present") || attendanceStatus.equals("Employee is Absent"));
+        assertEquals(160, fullTimeDailyWage);
+        assertEquals(160, partTimeDailyWage);
+        assertTrue(attendanceBasedDailyWage == 0 || attendanceBasedDailyWage == 160);
+        assertEquals(3200, estimatedMonthlyWage);
+        assertTrue(monthlyWageWithLimits >= 0 && monthlyWageWithLimits <= 2000);
+        assertTrue(staticConfigurationWage >= 0 && staticConfigurationWage <= 2000);
+        assertTrue(staticConfigurationWage % 20 == 0);
     }
 }

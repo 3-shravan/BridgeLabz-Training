@@ -10,15 +10,15 @@ public class EmployeeWageRepository {
     return 20;
   }
 
-  public int getFullDayHours() {
+  public int getFullTimeHoursPerDay() {
     return 8;
   }
 
-  public int getPartTimeHours() {
+  public int getPartTimeHoursPerDay() {
     return 8;
   }
 
-  public int getWorkingDaysPerMonth() {
+  public int getMaxWorkingDaysPerMonth() {
     return 20;
   }
 
@@ -26,7 +26,7 @@ public class EmployeeWageRepository {
     return 100;
   }
 
-  public int getAttendanceType() {
+  public int nextAttendanceType() {
     return random.nextInt(3);
   }
 

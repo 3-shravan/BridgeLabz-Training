@@ -1,7 +1,6 @@
 package com.shravan.controller;
 
 import com.shravan.entity.EmployeeAttendance;
-import com.shravan.entity.EmployeeWage;
 import com.shravan.service.EmployeeWageService;
 
 public class EmployeeWageController {
@@ -12,27 +11,36 @@ public class EmployeeWageController {
     this.service = service;
   }
 
-  public String getWelcomeMessage() {
-    return service.getWelcomeMessage();
+  public String getWelcomeText() {
+    return service.getWelcomeText();
   }
 
-  public EmployeeAttendance checkEmployeeAttendance() {
-    return service.checkAttendance();
+  public String getAttendanceStatus() {
+    EmployeeAttendance attendance = service.getAttendance();
+    return attendance.getStatus();
   }
 
-  public EmployeeWage calculateDailyWage() {
-    return service.calculateDailyWage();
+  public int getFullTimeDailyWage() {
+    return service.calculateFullTimeDailyWage().getAmount();
   }
 
-  public EmployeeWage calculatePartTimeWage() {
-    return service.calculatePartTimeWage();
+  public int getPartTimeDailyWage() {
+    return service.calculatePartTimeDailyWage().getAmount();
   }
 
-  public EmployeeWage calculateMonthlyWage() {
-    return service.calculateMonthlyWage();
+  public int getAttendanceBasedDailyWage() {
+    return service.calculateAttendanceBasedDailyWage().getAmount();
   }
 
-  public EmployeeWage calculateWageTillConditionForMonth() {
-    return service.calculateWageTillConditionForMonth();
+  public int getEstimatedMonthlyWage() {
+    return service.calculateEstimatedMonthlyWage().getAmount();
+  }
+
+  public int getMonthlyWageWithLimits() {
+    return service.calculateWageUntilMonthlyLimits().getAmount();
+  }
+
+  public int getStaticConfigurationWage() {
+    return EmployeeWageService.computeWageWithStaticConfiguration().getAmount();
   }
 }

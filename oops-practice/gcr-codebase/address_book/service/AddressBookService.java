@@ -92,7 +92,7 @@ public class AddressBookService {
     validateField(city);
     int count = 0;
     for (AddressBook ab : systemRepository.getAllAddressBooks().values()) {
-      count = addressBookRepository.totalContactsCountByCity(ab, city);
+      count += addressBookRepository.totalContactsCountByCity(ab, city);
 
     }
     return count;
@@ -102,7 +102,7 @@ public class AddressBookService {
     validateField(state);
     int count = 0;
     for (AddressBook ab : systemRepository.getAllAddressBooks().values()) {
-      count = addressBookRepository.totalContactsCountByState(ab, state);
+      count += addressBookRepository.totalContactsCountByState(ab, state);
 
     }
     return count;
@@ -121,6 +121,50 @@ public class AddressBookService {
         System.out.println(contact);
       }
     }
+  }
+
+  public void showContactsSortedByName() {
+    List<Contact> sortedContacts = addressBookRepository.getContactsSortedByName(currentAddressBook);
+    if (sortedContacts == null || sortedContacts.isEmpty()) {
+      System.out.println("No contacts found.");
+      return;
+    }
+
+    System.out.println("Contacts sorted alphabetically by person name:");
+    sortedContacts.forEach(System.out::println);
+  }
+
+  public void showContactsSortedByCity() {
+    List<Contact> sortedContacts = addressBookRepository.getContactsSortedByCity(currentAddressBook);
+    if (sortedContacts == null || sortedContacts.isEmpty()) {
+      System.out.println("No contacts found.");
+      return;
+    }
+
+    System.out.println("Contacts sorted by city:");
+    sortedContacts.forEach(System.out::println);
+  }
+
+  public void showContactsSortedByState() {
+    List<Contact> sortedContacts = addressBookRepository.getContactsSortedByState(currentAddressBook);
+    if (sortedContacts == null || sortedContacts.isEmpty()) {
+      System.out.println("No contacts found.");
+      return;
+    }
+
+    System.out.println("Contacts sorted by state:");
+    sortedContacts.forEach(System.out::println);
+  }
+
+  public void showContactsSortedByZip() {
+    List<Contact> sortedContacts = addressBookRepository.getContactsSortedByZip(currentAddressBook);
+    if (sortedContacts == null || sortedContacts.isEmpty()) {
+      System.out.println("No contacts found.");
+      return;
+    }
+
+    System.out.println("Contacts sorted by zip:");
+    sortedContacts.forEach(System.out::println);
   }
 
   public void addContact(Contact contact) {

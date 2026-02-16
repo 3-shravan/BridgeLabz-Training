@@ -43,6 +43,10 @@ public class Contact {
     return state;
   }
 
+  public String getZip() {
+    return zip;
+  }
+
   @Override
   public String toString() {
     return "ContactPerson{" + "Name='" + firstName + " " + lastName + '\'' + ", Address='" + address + '\'' + ", City='"

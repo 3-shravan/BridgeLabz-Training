@@ -1,7 +1,9 @@
 package repository;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import entity.AddressBook;
 import entity.Contact;
@@ -23,6 +25,37 @@ public class AddressBookRepository {
 
   public List<Contact> getContacts(AddressBook addressBook) {
     return addressBook.getContacts();
+  }
+
+  public List<Contact> getContactsSortedByName(AddressBook addressBook) {
+    return addressBook.getContacts()
+        .stream()
+        .sorted(Comparator.comparing(Contact::getFullName, String.CASE_INSENSITIVE_ORDER))
+        .collect(Collectors.toList());
+  }
+
+  public List<Contact> getContactsSortedByCity(AddressBook addressBook) {
+    return addressBook.getContacts()
+        .stream()
+        .sorted(Comparator.comparing(Contact::getCity, String.CASE_INSENSITIVE_ORDER)
+            .thenComparing(Contact::getFullName, String.CASE_INSENSITIVE_ORDER))
+        .collect(Collectors.toList());
+  }
+
+  public List<Contact> getContactsSortedByState(AddressBook addressBook) {
+    return addressBook.getContacts()
+        .stream()
+        .sorted(Comparator.comparing(Contact::getState, String.CASE_INSENSITIVE_ORDER)
+            .thenComparing(Contact::getFullName, String.CASE_INSENSITIVE_ORDER))
+        .collect(Collectors.toList());
+  }
+
+  public List<Contact> getContactsSortedByZip(AddressBook addressBook) {
+    return addressBook.getContacts()
+        .stream()
+        .sorted(Comparator.comparing(Contact::getZip, String.CASE_INSENSITIVE_ORDER)
+            .thenComparing(Contact::getFullName, String.CASE_INSENSITIVE_ORDER))
+        .collect(Collectors.toList());
   }
 
   public Contact findByFirstName(AddressBook addressBook, String firstName) {

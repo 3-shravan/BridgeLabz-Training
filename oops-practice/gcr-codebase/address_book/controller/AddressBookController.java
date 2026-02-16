@@ -21,42 +21,48 @@ public class AddressBookController {
         int choice = Integer.parseInt(scanner.nextLine());
 
         switch (choice) {
-        case 1:
-          showContactsFlow();
-          break;
-        case 2:
-          addContactFlow();
-          break;
-        case 3:
-          editContactFlow();
-          break;
-        case 4:
-          deleteContactFlow();
-          break;
-        case 5:
-          createAddressBookFlow();
-          break;
-        case 6:
-          showAllAddressBooksFlow();
-          break;
-        case 7:
-          switchAddressBookFlow();
-          break;
-        case 8:
-          handleSearchByStateOrCity();
-          break;
-        case 9:
-          handleViewByStateOrCity();
-          break;
-        case 10:
-          handleContactCountByStateOrCity();
-          break;
-        case 0:
-          running = false;
-          System.out.println("Exiting Address Book...!");
-          break;
-        default:
-          System.out.println("Invalid choice. Try again.");
+          case 1:
+            showContactsFlow();
+            break;
+          case 2:
+            addContactFlow();
+            break;
+          case 3:
+            editContactFlow();
+            break;
+          case 4:
+            deleteContactFlow();
+            break;
+          case 5:
+            createAddressBookFlow();
+            break;
+          case 6:
+            showAllAddressBooksFlow();
+            break;
+          case 7:
+            switchAddressBookFlow();
+            break;
+          case 8:
+            handleSearchByStateOrCity();
+            break;
+          case 9:
+            handleViewByStateOrCity();
+            break;
+          case 10:
+            handleContactCountByStateOrCity();
+            break;
+          case 11:
+            sortContactsByNameFlow();
+            break;
+          case 12:
+            sortContactsByCityStateOrZipFlow();
+            break;
+          case 0:
+            running = false;
+            System.out.println("Exiting Address Book...!");
+            break;
+          default:
+            System.out.println("Invalid choice. Try again.");
         }
       } catch (NumberFormatException e) {
         System.out.println("Please enter a valid number.");
@@ -78,22 +84,22 @@ public class AddressBookController {
       System.out.print("Enter your choice: ");
       int choice = Integer.parseInt(scanner.nextLine());
       switch (choice) {
-      case 0:
-        return;
-      case 1:
-        System.out.print("Enter state to get total contacts: ");
-        String state = scanner.nextLine();
-        int stateCount = service.totalContactsCountByState(state);
-        System.out.println("Total contacts in state '" + state + "': " + stateCount);
-        break;
-      case 2:
-        System.out.print("Enter city to get total contacts: ");
-        String city = scanner.nextLine();
-        int cityCount = service.totalContactsCountByCity(city);
-        System.out.println("Total contacts in city '" + city + "': " + cityCount);
-        break;
-      default:
-        System.out.println("Invalid choice. Please select 1 or 2.");
+        case 0:
+          return;
+        case 1:
+          System.out.print("Enter state to get total contacts: ");
+          String state = scanner.nextLine();
+          int stateCount = service.totalContactsCountByState(state);
+          System.out.println("Total contacts in state '" + state + "': " + stateCount);
+          break;
+        case 2:
+          System.out.print("Enter city to get total contacts: ");
+          String city = scanner.nextLine();
+          int cityCount = service.totalContactsCountByCity(city);
+          System.out.println("Total contacts in city '" + city + "': " + cityCount);
+          break;
+        default:
+          System.out.println("Invalid choice. Please select 1 or 2.");
       }
 
     } catch (IllegalArgumentException e) {
@@ -110,36 +116,36 @@ public class AddressBookController {
       System.out.print("Enter your choice: ");
       int choice = Integer.parseInt(scanner.nextLine());
       switch (choice) {
-      case 0:
-        return;
-      case 1:
-        System.out.print("Enter state to view contacts: ");
-        String state = scanner.nextLine();
-        List<Contact> stateResults = service.getContactsByState(state);
-        if (stateResults.isEmpty()) {
-          System.out.println("No contacts found for the given state.");
-        } else {
-          System.out.println("Contacts found:");
-          for (Contact contact : stateResults) {
-            System.out.println(contact);
+        case 0:
+          return;
+        case 1:
+          System.out.print("Enter state to view contacts: ");
+          String state = scanner.nextLine();
+          List<Contact> stateResults = service.getContactsByState(state);
+          if (stateResults.isEmpty()) {
+            System.out.println("No contacts found for the given state.");
+          } else {
+            System.out.println("Contacts found:");
+            for (Contact contact : stateResults) {
+              System.out.println(contact);
+            }
           }
-        }
-        break;
-      case 2:
-        System.out.print("Enter city to view contacts: ");
-        String city = scanner.nextLine();
-        List<Contact> cityResults = service.getContactsByCity(city);
-        if (cityResults.isEmpty()) {
-          System.out.println("No contacts found for the given city.");
-        } else {
-          System.out.println("Contacts found:");
-          for (Contact contact : cityResults) {
-            System.out.println(contact);
+          break;
+        case 2:
+          System.out.print("Enter city to view contacts: ");
+          String city = scanner.nextLine();
+          List<Contact> cityResults = service.getContactsByCity(city);
+          if (cityResults.isEmpty()) {
+            System.out.println("No contacts found for the given city.");
+          } else {
+            System.out.println("Contacts found:");
+            for (Contact contact : cityResults) {
+              System.out.println(contact);
+            }
           }
-        }
-        break;
-      default:
-        System.out.println("Invalid choice. Please select 1 or 2.");
+          break;
+        default:
+          System.out.println("Invalid choice. Please select 1 or 2.");
       }
 
     } catch (IllegalArgumentException e) {
@@ -182,8 +188,41 @@ public class AddressBookController {
     System.out.println("8. Search Contacts by State or City");
     System.out.println("9. View Contacts by State or City");
     System.out.println("10. Get Total Contacts by State or City");
+    System.out.println("11. Sort Contacts by Person Name (A-Z)");
+    System.out.println("12. Sort Contacts by City/State/Zip");
     System.out.println("0. Exit");
     System.out.print("Enter your choice: ");
+  }
+
+  private static void sortContactsByNameFlow() {
+    service.showContactsSortedByName();
+  }
+
+  private static void sortContactsByCityStateOrZipFlow() {
+    try {
+      System.out.println("Sort contacts by:");
+      System.out.println("1. City");
+      System.out.println("2. State");
+      System.out.println("3. Zip");
+      System.out.print("Enter your choice: ");
+      int choice = Integer.parseInt(scanner.nextLine());
+
+      switch (choice) {
+        case 1:
+          service.showContactsSortedByCity();
+          break;
+        case 2:
+          service.showContactsSortedByState();
+          break;
+        case 3:
+          service.showContactsSortedByZip();
+          break;
+        default:
+          System.out.println("Invalid choice. Please select 1, 2 or 3.");
+      }
+    } catch (NumberFormatException e) {
+      System.out.println("Please enter a valid number.");
+    }
   }
 
   private static void addContactFlow() {

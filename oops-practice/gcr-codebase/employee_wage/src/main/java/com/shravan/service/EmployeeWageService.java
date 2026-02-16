@@ -1,6 +1,7 @@
 package com.shravan.service;
 
 import com.shravan.entity.EmployeeAttendance;
+import com.shravan.entity.EmployeeWage;
 import com.shravan.repository.EmployeeWageRepository;
 
 public class EmployeeWageService {
@@ -17,5 +18,10 @@ public class EmployeeWageService {
 
   public EmployeeAttendance checkAttendance() {
     return new EmployeeAttendance(repository.isEmployeePresent());
+  }
+
+  public EmployeeWage calculateDailyWage() {
+    int dailyWage = repository.getWagePerHour() * repository.getFullDayHours();
+    return new EmployeeWage(dailyWage);
   }
 }

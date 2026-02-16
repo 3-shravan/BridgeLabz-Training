@@ -2,6 +2,7 @@ package com.shravan;
 
 import com.shravan.controller.EmployeeWageController;
 import com.shravan.entity.EmployeeAttendance;
+import com.shravan.entity.EmployeeWage;
 import com.shravan.repository.EmployeeWageRepository;
 import com.shravan.service.EmployeeWageService;
 
@@ -15,5 +16,8 @@ public class App {
 
         EmployeeAttendance attendance = controller.checkEmployeeAttendance();
         System.out.println("UC1 Result: " + attendance.getStatus());
+
+        EmployeeWage dailyWage = controller.calculateDailyWage();
+        System.out.println("UC2 Result: Daily Employee Wage = " + dailyWage.getAmount());
     }
 }

@@ -57,6 +57,9 @@ public class AddressBookController {
           case 12:
             sortContactsByCityStateOrZipFlow();
             break;
+          case 13:
+            fileReadWriteFlow();
+            break;
           case 0:
             running = false;
             System.out.println("Exiting Address Book...!");
@@ -190,6 +193,7 @@ public class AddressBookController {
     System.out.println("10. Get Total Contacts by State or City");
     System.out.println("11. Sort Contacts by Person Name (A-Z)");
     System.out.println("12. Sort Contacts by City/State/Zip");
+    System.out.println("13. Read/Write Address Book To File");
     System.out.println("0. Exit");
     System.out.print("Enter your choice: ");
   }
@@ -222,6 +226,36 @@ public class AddressBookController {
       }
     } catch (NumberFormatException e) {
       System.out.println("Please enter a valid number.");
+    }
+  }
+
+  private static void fileReadWriteFlow() {
+    try {
+      System.out.println("File Operations:");
+      System.out.println("1. Write Address Book to File");
+      System.out.println("2. Read Address Book from File");
+      System.out.print("Enter your choice: ");
+      int choice = Integer.parseInt(scanner.nextLine());
+
+      System.out.print("Enter file path: ");
+      String filePath = scanner.nextLine();
+
+      switch (choice) {
+        case 1:
+          service.writeCurrentAddressBookToFile(filePath);
+          break;
+        case 2:
+          service.readContactsFromFile(filePath);
+          break;
+        default:
+          System.out.println("Invalid choice. Please select 1 or 2.");
+      }
+    } catch (NumberFormatException e) {
+      System.out.println("Please enter a valid number.");
+    } catch (IllegalArgumentException e) {
+      System.out.println("Error: " + e.getMessage());
+    } catch (IllegalStateException e) {
+      System.out.println("Error: " + e.getMessage());
     }
   }
 

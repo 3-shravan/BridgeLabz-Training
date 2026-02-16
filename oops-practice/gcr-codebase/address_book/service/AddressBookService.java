@@ -1,8 +1,15 @@
 package service;
 
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import entity.AddressBook;
 import entity.Contact;
@@ -167,6 +174,81 @@ public class AddressBookService {
     sortedContacts.forEach(System.out::println);
   }
 
+  public void writeCurrentAddressBookToFile(String filePath) {
+    validateField(filePath);
+    Path path = Paths.get(filePath);
+    try {
+      Path parent = path.getParent();
+      if (parent != null) {
+        Files.createDirectories(parent);
+      }
+
+      List<String> lines = new ArrayList<>();
+      lines.add("firstName,lastName,address,city,state,zip,phoneNumber,email");
+
+      currentAddressBook.getContacts()
+          .stream()
+          .map(this::toCsvLine)
+          .forEach(lines::add);
+
+      Files.write(path, lines, StandardCharsets.UTF_8);
+      System.out.println("Address Book written successfully to file: " + filePath);
+    } catch (IOException e) {
+      throw new IllegalStateException("Failed to write Address Book to file: " + e.getMessage());
+    }
+  }
+
+  public void readContactsFromFile(String filePath) {
+    validateField(filePath);
+    Path path = Paths.get(filePath);
+
+    if (!Files.exists(path)) {
+      throw new IllegalArgumentException("File not found: " + filePath);
+    }
+
+    try {
+      List<String> lines = Files.readAllLines(path, StandardCharsets.UTF_8);
+      if (lines.isEmpty()) {
+        currentAddressBook.getContacts().clear();
+        System.out.println("File is empty. Address Book cleared.");
+        return;
+      }
+
+      List<Contact> loadedContacts = new ArrayList<>();
+      for (int i = 0; i < lines.size(); i++) {
+        String line = lines.get(i);
+        if (line == null || line.isBlank()) {
+          continue;
+        }
+
+        if (i == 0 && line.trim().equalsIgnoreCase("firstName,lastName,address,city,state,zip,phoneNumber,email")) {
+          continue;
+        }
+
+        List<String> values = parseCsvLine(line);
+        if (values.size() != 8) {
+          throw new IllegalArgumentException("Invalid file format at line " + (i + 1));
+        }
+
+        loadedContacts.add(new Contact(
+            values.get(0),
+            values.get(1),
+            values.get(2),
+            values.get(3),
+            values.get(4),
+            values.get(5),
+            values.get(6),
+            values.get(7)));
+      }
+
+      currentAddressBook.getContacts().clear();
+      currentAddressBook.getContacts().addAll(loadedContacts);
+      System.out.println("Address Book loaded successfully from file. Total contacts: " + loadedContacts.size());
+    } catch (IOException e) {
+      throw new IllegalStateException("Failed to read Address Book from file: " + e.getMessage());
+    }
+  }
+
   public void addContact(Contact contact) {
     validateContact(contact);
     boolean isExists = addressBookRepository.isContactExists(currentAddressBook, contact);
@@ -231,6 +313,58 @@ public class AddressBookService {
     if (fieldValue == null || fieldValue.isEmpty()) {
       throw new IllegalArgumentException(fieldValue + " cannot be empty.");
     }
+  }
+
+  private String toCsvLine(Contact contact) {
+    return Stream.of(
+        contact.getFirstName(),
+        contact.getLastName(),
+        contact.getAddress(),
+        contact.getCity(),
+        contact.getState(),
+        contact.getZip(),
+        contact.getPhoneNumber(),
+        contact.getEmail())
+        .map(this::escapeCsv)
+        .collect(Collectors.joining(","));
+  }
+
+  private String escapeCsv(String value) {
+    if (value == null) {
+      return "";
+    }
+
+    String escaped = value.replace("\"", "\"\"");
+    if (escaped.contains(",") || escaped.contains("\"") || escaped.contains("\n") || escaped.contains("\r")) {
+      return "\"" + escaped + "\"";
+    }
+    return escaped;
+  }
+
+  private List<String> parseCsvLine(String line) {
+    List<String> values = new ArrayList<>();
+    StringBuilder current = new StringBuilder();
+    boolean inQuotes = false;
+
+    for (int i = 0; i < line.length(); i++) {
+      char ch = line.charAt(i);
+      if (ch == '"') {
+        if (inQuotes && i + 1 < line.length() && line.charAt(i + 1) == '"') {
+          current.append('"');
+          i++;
+        } else {
+          inQuotes = !inQuotes;
+        }
+      } else if (ch == ',' && !inQuotes) {
+        values.add(current.toString());
+        current.setLength(0);
+      } else {
+        current.append(ch);
+      }
+    }
+
+    values.add(current.toString());
+    return values;
   }
 
 }

@@ -35,6 +35,10 @@ public class Contact {
     return lastName;
   }
 
+  public String getAddress() {
+    return address;
+  }
+
   public String getCity() {
     return city;
   }
@@ -45,6 +49,14 @@ public class Contact {
 
   public String getZip() {
     return zip;
+  }
+
+  public String getPhoneNumber() {
+    return phoneNumber;
+  }
+
+  public String getEmail() {
+    return email;
   }
 
   @Override

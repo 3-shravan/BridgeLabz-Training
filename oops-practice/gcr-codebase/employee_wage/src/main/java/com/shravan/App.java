@@ -19,5 +19,8 @@ public class App {
 
         EmployeeWage dailyWage = controller.calculateDailyWage();
         System.out.println("UC2 Result: Daily Employee Wage = " + dailyWage.getAmount());
+
+        EmployeeWage partTimeWage = controller.calculatePartTimeWage();
+        System.out.println("UC3 Result: Part Time Employee Wage = " + partTimeWage.getAmount());
     }
 }

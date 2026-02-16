@@ -43,4 +43,15 @@ public class AppTest {
         assertNotNull(wage);
         assertEquals(160, wage.getAmount());
     }
+
+    @Test
+    public void shouldCalculatePartTimeWageForUc3() {
+        EmployeeWageController controller = new EmployeeWageController(
+                new EmployeeWageService(new EmployeeWageRepository()));
+
+        EmployeeWage wage = controller.calculatePartTimeWage();
+
+        assertNotNull(wage);
+        assertEquals(160, wage.getAmount());
+    }
 }

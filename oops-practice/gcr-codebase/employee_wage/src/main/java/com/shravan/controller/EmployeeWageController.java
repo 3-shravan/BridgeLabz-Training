@@ -23,4 +23,8 @@ public class EmployeeWageController {
   public EmployeeWage calculateDailyWage() {
     return service.calculateDailyWage();
   }
+
+  public EmployeeWage calculatePartTimeWage() {
+    return service.calculatePartTimeWage();
+  }
 }

@@ -14,7 +14,10 @@ public class EmployeeWageRepository {
     return 8;
   }
 
- 
+  public int getPartTimeHours() {
+    return 8;
+  }
+
   public boolean isEmployeePresent() {
     return random.nextBoolean();
   }

@@ -27,4 +27,8 @@ public class EmployeeWageController {
   public EmployeeWage calculatePartTimeWage() {
     return service.calculatePartTimeWage();
   }
+
+  public EmployeeWage calculateMonthlyWage() {
+    return service.calculateMonthlyWage();
+  }
 }

@@ -29,4 +29,9 @@ public class EmployeeWageService {
     int partTimeWage = repository.getWagePerHour() * repository.getPartTimeHours();
     return new EmployeeWage(partTimeWage);
   }
+
+  public EmployeeWage calculateMonthlyWage() {
+    int monthlyWage = calculateDailyWage().getAmount() * repository.getWorkingDaysPerMonth();
+    return new EmployeeWage(monthlyWage);
+  }
 }

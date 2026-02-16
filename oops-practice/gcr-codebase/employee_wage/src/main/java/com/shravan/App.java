@@ -47,5 +47,8 @@ public class App {
         }
 
         System.out.println("UC4 Result: Employee Wage using Switch Case = " + uc4Wage);
+
+        EmployeeWage monthlyWage = controller.calculateMonthlyWage();
+        System.out.println("UC5 Result: Monthly Employee Wage = " + monthlyWage.getAmount());
     }
 }

@@ -18,6 +18,10 @@ public class EmployeeWageRepository {
     return 8;
   }
 
+  public int getWorkingDaysPerMonth() {
+    return 20;
+  }
+
   public boolean isEmployeePresent() {
     return random.nextBoolean();
   }

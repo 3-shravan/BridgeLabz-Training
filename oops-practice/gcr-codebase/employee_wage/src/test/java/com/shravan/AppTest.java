@@ -68,4 +68,15 @@ public class AppTest {
         assertTrue(partTimeWage == 160);
         assertTrue(absentWage == 0);
     }
+
+    @Test
+    public void shouldCalculateMonthlyWageForUc5() {
+        EmployeeWageController controller = new EmployeeWageController(
+                new EmployeeWageService(new EmployeeWageRepository()));
+
+        EmployeeWage wage = controller.calculateMonthlyWage();
+
+        assertNotNull(wage);
+        assertEquals(3200, wage.getAmount());
+    }
 }

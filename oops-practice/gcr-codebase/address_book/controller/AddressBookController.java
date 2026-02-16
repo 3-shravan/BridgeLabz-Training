@@ -66,6 +66,9 @@ public class AddressBookController {
           case 15:
             jsonReadWriteUsingGsonFlow();
             break;
+          case 16:
+            jsonServerReadWriteFlow();
+            break;
           case 0:
             running = false;
             System.out.println("Exiting Address Book...!");
@@ -202,6 +205,7 @@ public class AddressBookController {
     System.out.println("13. Read/Write Address Book To File");
     System.out.println("14. Read/Write Address Book as CSV (OpenCSV)");
     System.out.println("15. Read/Write Address Book as JSON (Gson)");
+    System.out.println("16. Read/Write Address Book to JSONServer");
     System.out.println("0. Exit");
     System.out.print("Enter your choice: ");
   }
@@ -314,6 +318,36 @@ public class AddressBookController {
           break;
         case 2:
           service.readContactsFromJsonUsingGson(filePath);
+          break;
+        default:
+          System.out.println("Invalid choice. Please select 1 or 2.");
+      }
+    } catch (NumberFormatException e) {
+      System.out.println("Please enter a valid number.");
+    } catch (IllegalArgumentException e) {
+      System.out.println("Error: " + e.getMessage());
+    } catch (IllegalStateException e) {
+      System.out.println("Error: " + e.getMessage());
+    }
+  }
+
+  private static void jsonServerReadWriteFlow() {
+    try {
+      System.out.println("JSON Server Operations:");
+      System.out.println("1. Write Address Book to JSON Server");
+      System.out.println("2. Read Address Book from JSON Server");
+      System.out.print("Enter your choice: ");
+      int choice = Integer.parseInt(scanner.nextLine());
+
+      System.out.print("Enter JSON Server API URL (example: http://localhost:3000/contacts): ");
+      String apiUrl = scanner.nextLine();
+
+      switch (choice) {
+        case 1:
+          service.writeCurrentAddressBookToJsonServer(apiUrl);
+          break;
+        case 2:
+          service.readContactsFromJsonServer(apiUrl);
           break;
         default:
           System.out.println("Invalid choice. Please select 1 or 2.");

@@ -4,6 +4,10 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -19,6 +23,9 @@ import com.opencsv.CSVWriter;
 import com.opencsv.exceptions.CsvValidationException;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
 import entity.AddressBook;
@@ -32,6 +39,7 @@ public class AddressBookService {
   private final AddressBookRepository addressBookRepository = new AddressBookRepository();
   private AddressBook currentAddressBook;
   private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
+  private static final HttpClient HTTP_CLIENT = HttpClient.newHttpClient();
 
   public AddressBookService() {
     this.currentAddressBook = systemRepository.getDefaultAddressBook();
@@ -390,6 +398,100 @@ public class AddressBookService {
     }
   }
 
+  public void writeCurrentAddressBookToJsonServer(String apiUrl) {
+    validateField(apiUrl);
+    String normalizedApiUrl = normalizeApiUrl(apiUrl);
+
+    try {
+      HttpRequest fetchRequest = HttpRequest.newBuilder()
+          .uri(URI.create(normalizedApiUrl))
+          .GET()
+          .build();
+
+      HttpResponse<String> fetchResponse = HTTP_CLIENT.send(fetchRequest, HttpResponse.BodyHandlers.ofString());
+
+      if (fetchResponse.statusCode() < 200 || fetchResponse.statusCode() >= 300) {
+        throw new IllegalStateException("Unable to reach JSON Server. HTTP status: " + fetchResponse.statusCode());
+      }
+
+      JsonArray existingRecords = GSON.fromJson(fetchResponse.body(), JsonArray.class);
+      if (existingRecords != null) {
+        for (JsonElement record : existingRecords) {
+          if (record != null && record.isJsonObject()) {
+            JsonObject object = record.getAsJsonObject();
+            JsonElement idElement = object.get("id");
+            if (idElement != null && !idElement.isJsonNull()) {
+              String deleteUrl = normalizedApiUrl + "/" + idElement.getAsString();
+              HttpRequest deleteRequest = HttpRequest.newBuilder()
+                  .uri(URI.create(deleteUrl))
+                  .DELETE()
+                  .build();
+              HTTP_CLIENT.send(deleteRequest, HttpResponse.BodyHandlers.ofString());
+            }
+          }
+        }
+      }
+
+      for (Contact contact : currentAddressBook.getContacts()) {
+        String payload = GSON.toJson(contact);
+        HttpRequest postRequest = HttpRequest.newBuilder()
+            .uri(URI.create(normalizedApiUrl))
+            .header("Content-Type", "application/json")
+            .POST(HttpRequest.BodyPublishers.ofString(payload, StandardCharsets.UTF_8))
+            .build();
+
+        HttpResponse<String> postResponse = HTTP_CLIENT.send(postRequest, HttpResponse.BodyHandlers.ofString());
+        if (postResponse.statusCode() < 200 || postResponse.statusCode() >= 300) {
+          throw new IllegalStateException("Failed to write contact to JSON Server. HTTP status: " + postResponse.statusCode());
+        }
+      }
+
+      System.out.println("Address Book written successfully to JSON Server: " + normalizedApiUrl);
+    } catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new IllegalStateException("Failed to write Address Book to JSON Server: " + e.getMessage());
+    } catch (IOException e) {
+      throw new IllegalStateException("Failed to write Address Book to JSON Server: " + e.getMessage());
+    }
+  }
+
+  public void readContactsFromJsonServer(String apiUrl) {
+    validateField(apiUrl);
+    String normalizedApiUrl = normalizeApiUrl(apiUrl);
+
+    try {
+      HttpRequest request = HttpRequest.newBuilder()
+          .uri(URI.create(normalizedApiUrl))
+          .GET()
+          .build();
+
+      HttpResponse<String> response = HTTP_CLIENT.send(request, HttpResponse.BodyHandlers.ofString());
+
+      if (response.statusCode() < 200 || response.statusCode() >= 300) {
+        throw new IllegalStateException("Failed to read from JSON Server. HTTP status: " + response.statusCode());
+      }
+
+      Type contactListType = new TypeToken<List<Contact>>() {
+      }.getType();
+      List<Contact> serverContacts = GSON.fromJson(response.body(), contactListType);
+      if (serverContacts == null) {
+        serverContacts = new ArrayList<>();
+      }
+
+      currentAddressBook.getContacts().clear();
+      currentAddressBook.getContacts().addAll(serverContacts);
+
+      System.out.println("Address Book loaded successfully from JSON Server. Total contacts: " + serverContacts.size());
+    } catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new IllegalStateException("Failed to read Address Book from JSON Server: " + e.getMessage());
+    } catch (IOException e) {
+      throw new IllegalStateException("Failed to read Address Book from JSON Server: " + e.getMessage());
+    } catch (Exception e) {
+      throw new IllegalStateException("Invalid JSON response from JSON Server: " + e.getMessage());
+    }
+  }
+
   public void addContact(Contact contact) {
     validateContact(contact);
     boolean isExists = addressBookRepository.isContactExists(currentAddressBook, contact);
@@ -506,6 +608,14 @@ public class AddressBookService {
 
     values.add(current.toString());
     return values;
+  }
+
+  private String normalizeApiUrl(String apiUrl) {
+    String trimmed = apiUrl.trim();
+    if (trimmed.endsWith("/")) {
+      return trimmed.substring(0, trimmed.length() - 1);
+    }
+    return trimmed;
   }
 
 }

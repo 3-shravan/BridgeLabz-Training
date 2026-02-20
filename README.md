@@ -7,6 +7,9 @@ Branches used during the training:
 - `core-java-practice`: https://github.com/3-shravan/BridgeLabz-Training/tree/core-java-practice
 - `oops-practice`: https://github.com/3-shravan/BridgeLabz-Training/tree/oops-practice
 - `dsa-practice`: https://github.com/3-shravan/BridgeLabz-Training/tree/dsa-practice
+- `collections-practice`: https://github.com/3-shravan/BridgeLabz-Training/tree/collections-practice
+- `io-programming`: https://github.com/3-shravan/BridgeLabz-Training/tree/io-programming
+- `java8-practice`: https://github.com/3-shravan/BridgeLabz-Training/tree/java8-practice
 - `reviews`: https://github.com/3-shravan/BridgeLabz-Training/tree/reviews
 
 ---
@@ -351,3 +354,55 @@ Branches used during the training:
 
 - Work :
   - [Ocean Fleet](https://github.com/3-shravan/BridgeLabz-Training/blob/collections-practice/collections-practice/scenario-based/OceanFleet.java)
+
+---
+
+## Week 10
+
+**8-Feb-2026 (Sunday):** Practiced Multi-Threading and solved Design Pattern problems.
+
+- Branch:
+  - [java8-practice](https://github.com/3-shravan/BridgeLabz-Training/tree/java8-practice)
+
+- Work:
+  - [Multi-Threading](https://github.com/3-shravan/BridgeLabz-Training/tree/java8-practice/java8-practice/gcr-codebase/multi-threading)
+  - Design Solution (Design Patterns)
+
+**9-Feb-2026 (Monday):** Set up JDBC MySQL database connection and integrated SonarQube for Health Clinic App.
+
+- Branch:
+  - [io-programming](https://github.com/3-shravan/BridgeLabz-Training/tree/io-programming)
+
+- Work:
+  - [JDBC MySQL connection — Health Clinic App](https://github.com/3-shravan/BridgeLabz-Training/tree/io-programming/io-programming/gcr-codebase/jdbc)
+  - SonarQube integration screenshot added
+
+**12-Feb-2026 (Thursday):** Solved JUnit scenario-based testing problem — Health Clinic UC1.
+
+- Branch:
+  - [collections-practice](https://github.com/3-shravan/BridgeLabz-Training/tree/collections-practice)
+
+- Work:
+  - [`Health Clinic` — JUnit testing](https://github.com/3-shravan/BridgeLabz-Training/tree/collections-practice/collections-practice/gcr-codebase/junit)
+
+**13-Feb-2026 (Friday):** Solved JUnit scenario-based testing problems.
+
+- Branch:
+  - [collections-practice](https://github.com/3-shravan/BridgeLabz-Training/tree/collections-practice)
+
+- Work:
+  - [`junit` scenario-based testing](https://github.com/3-shravan/BridgeLabz-Training/tree/collections-practice/collections-practice/gcr-codebase/junit)
+
+---
+
+## Week 11
+
+**16-Feb-2026 (Monday):** Completed remaining Address Book System UCs and Employee Wage Problem UCs.
+
+- Branch:
+  - [oops-practice](https://github.com/3-shravan/BridgeLabz-Training/tree/oops-practice)
+  - [reviews](https://github.com/3-shravan/BridgeLabz-Training/tree/reviews)
+
+- Work:
+  - [Address Book](https://github.com/3-shravan/BridgeLabz-Training/tree/oops-practice/oops-practice/gcr-codebase/address_book) 
+  - [Employee Wage ](https://github.com/3-shravan/BridgeLabz-Training/blob/reviews/reviews/EmployeeWagerComputation.java)

@@ -1,8 +1,0 @@
-*.class
-/bin/
-.vs/
-.github/
-.project
-.vscode/
-.classpath
-core_java_practice/
